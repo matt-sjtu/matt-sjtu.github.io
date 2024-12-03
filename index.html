@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页</title>
+    <title>Matt-SJTU</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -23,7 +23,7 @@
         }
 
         #about-photo {
-            width: 100px;
+            width: 200px;
             height: auto; /* 保持图片比例 */
             border-radius: 50%;
             margin-right: 20px;
@@ -31,7 +31,7 @@
 
         h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 48px;
         }
 
         nav ul {
@@ -99,13 +99,20 @@
         </section>
         <section id="research">
             <h2 id="research-title">研究</h2>
-            <p id="research-content">我的研究兴趣包括：人工智能 计算机视觉 生成模型 可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com" id="google-scholar-link" target="_blank">Google Scholar</a> 和 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a>。</p>
+            <p id="research-content">我的研究兴趣包括：人工智能 计算机视觉 生成模型 可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> 和 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a>。</p>
             <img src="topic.png" alt="研究方向词云" id="research-wordcloud">
         </section>
         <section id="courses">
             <h2 id="courses-title">课程</h2>
             <ul id="courses-list">
-                <li><a href="CS3964.zip" id="course1-link" target="_blank">CS3964 图像处理与视觉</a></li>
+                <li><a id="course1-link">CS3964 图像处理与视觉 </a></li>
+                <ul>
+                    <li><a href="导论.pdf" id="course1-intro-link" target="_blank">导论</a></li>
+                    <li><a href="几何模型.pdf" id="course1-geometry-link" target="_blank">几何模型</a></li>
+                    <li><a href="统计模型.pdf" id="course1-statistics-link" target="_blank">统计模型</a></li>
+                    <li><a href="深度模型.pdf" id="course1-deep-link" target="_blank">深度模型</a></li>
+                    <li><a href="生成模型.pdf" id="course1-generation-link" target="_blank">图像生成</a></li>
+                </ul>
                 <li><a href="https://cs7353.pages.dev/" id="course2-link" target="_blank">CS7353 设计和理解深度神经网络</a></li>
                 <li><a href="course3.pdf" id="course3-link" target="_blank">CS3969 视觉内容生成</a></li>
             </ul>
@@ -130,11 +137,16 @@
                 document.getElementById('nav-courses').textContent = 'Courses';
                 document.getElementById('nav-contact').textContent = 'Contact Me';
                 document.getElementById('about-title').textContent = 'About Me';
-                document.getElementById('about-content').innerHTML = 'Assistant Professor at Qingyuan Institute, School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University. I received my bachelor\'s degree from the ACM Honors Class at Shanghai Jiao Tong University and my Ph.D. from the Department of Computer Science and Engineering at the same university, under the supervision of <a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">Prof. Liqing Zhang</a>, <a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">Prof. Yong Yu</a>, and <a href="https://qibinzhao.github.io/" target="_blank">Dr. Qibin Zhao</a>.';
+                document.getElementById('about-content').innerHTML = 'Assistant Professor at Qingyuan Institute, School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University. I received my bachelor\'s degree from the ACM Honors Class at Shanghai Jiao Tong University and my Ph.D. from the Department of Computer Science and Engineering at the same university. Throughout my academic journey, I have had the privilege of guidance and collaboration with <a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">Prof. Liqing Zhang</a>, <a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">Prof. Yong Yu</a>, and <a href="https://qibinzhao.github.io/" target="_blank">Dr. Qibin Zhao</a>.';
                 document.getElementById('research-title').textContent = 'Research';
                 document.getElementById('research-content').innerHTML = 'My research interests include: Artificial Intelligence, Computer Vision, Generative Models, Trustworthy Models. For more details, please refer to <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> and <a href="job2024.pdf" id="recent-work-link" target="_blank">Recent Work</a>.';
                 document.getElementById('courses-title').textContent = 'Courses';
                 document.getElementById('course1-link').textContent = 'CS3964 Image Processing and Vision';
+                document.getElementById('course1-intro-link').textContent = 'Introduction';
+                document.getElementById('course1-geometry-link').textContent = 'Geometric Models';
+                document.getElementById('course1-statistics-link').textContent = 'Statistical Models';
+                document.getElementById('course1-deep-link').textContent = 'Deep Models';
+                document.getElementById('course1-generation-link').textContent = 'Image Generation';
                 document.getElementById('course2-link').textContent = 'CS7353 Designing and Understanding Deep Neural Networks';
                 document.getElementById('course3-link').textContent = 'CS3969 Visual Content Generation';
                 document.getElementById('contact-title').textContent = 'Contact Me';
@@ -153,6 +165,11 @@
                 document.getElementById('research-content').innerHTML = '我的研究兴趣包括：人工智能 计算机视觉 生成模型 可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> 和 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a>。';
                 document.getElementById('courses-title').textContent = '课程';
                 document.getElementById('course1-link').textContent = 'CS3964 图像处理与视觉';
+                document.getElementById('course1-intro-link').textContent = '导论';
+                document.getElementById('course1-geometry-link').textContent = '几何模型';
+                document.getElementById('course1-statistics-link').textContent = '统计模型';
+                document.getElementById('course1-deep-link').textContent = '深度模型';
+                document.getElementById('course1-generation-link').textContent = '图像生成';
                 document.getElementById('course2-link').textContent = 'CS7353 设计和理解深度神经网络';
                 document.getElementById('course3-link').textContent = 'CS3969 视觉内容生成';
                 document.getElementById('contact-title').textContent = '联系我';
