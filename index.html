@@ -76,6 +76,16 @@
             background-color: #f4f4f4;
             border-top: 1px solid #ccc;
         }
+
+        .dropdown-content {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .dropdown-content li {
+            margin-bottom: 0px;
+        }
     </style>
 </head>
 <body>
@@ -105,14 +115,16 @@
         <section id="courses">
             <h2 id="courses-title">课程</h2>
             <ul id="courses-list">
-                <li><a id="course1-link">CS3964 图像处理与视觉 </a></li>
-                <ul>
-                    <li><a href="导论.pdf" id="course1-intro-link" target="_blank">导论</a></li>
-                    <li><a href="几何模型.pdf" id="course1-geometry-link" target="_blank">几何模型</a></li>
-                    <li><a href="统计模型.pdf" id="course1-statistics-link" target="_blank">统计模型</a></li>
-                    <li><a href="深度模型.pdf" id="course1-deep-link" target="_blank">深度模型</a></li>
-                    <li><a href="生成模型.pdf" id="course1-generation-link" target="_blank">图像生成</a></li>
-                </ul>
+                <li>
+                    <a href="#" id="course1-link" onclick="toggleDropdown('course1-dropdown')">CS3964 图像处理与视觉</a>
+                    <ul id="course1-dropdown" class="dropdown-content">
+                        <li><a href="导论.pdf" id="course1-intro-link" target="_blank">导论</a></li>
+                        <li><a href="几何模型.pdf" id="course1-geometry-link" target="_blank">几何模型</a></li>
+                        <li><a href="统计模型.pdf" id="course1-statistics-link" target="_blank">统计模型</a></li>
+                        <li><a href="深度模型.pdf" id="course1-deep-link" target="_blank">深度模型</a></li>
+                        <li><a href="生成模型.pdf" id="course1-generation-link" target="_blank">图像生成</a></li>
+                    </ul>
+                </li>
                 <li><a href="https://cs7353.pages.dev/" id="course2-link" target="_blank">CS7353 设计和理解深度神经网络</a></li>
                 <li><a href="course3.pdf" id="course3-link" target="_blank">CS3969 视觉内容生成</a></li>
             </ul>
@@ -127,6 +139,15 @@
     </footer>
     <script src="script.js"></script>
     <script>
+        function toggleDropdown(id) {
+            var dropdown = document.getElementById(id);
+            if (dropdown.style.display === "none" || dropdown.style.display === "") {
+                dropdown.style.display = "block";
+            } else {
+                dropdown.style.display = "none";
+            }
+        }
+
         document.getElementById('language-toggle').addEventListener('click', function() {
             const currentLang = document.documentElement.lang;
             if (currentLang === 'zh-CN') {
