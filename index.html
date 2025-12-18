@@ -4,119 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matt-SJTU</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background-color: #f4f4f4;
-            border-bottom: 1px solid #ccc;
-        }
-
-        #about-photo {
-            width: 200px;
-            height: auto; /* 保持图片比例 */
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 48px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        button {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        section {
-            margin-bottom: 20px;
-        }
-
-        #research-wordcloud {
-            width: 600px; /* 调整图片宽度 */
-            height: auto; /* 保持图片比例 */
-            display: block;
-            margin: 20px auto; /* 居中显示 */
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #f4f4f4;
-            border-top: 1px solid #ccc;
-        }
-
-        .dropdown-content {
-            display: none;
-            list-style: none;
-            padding-left: 20px;
-        }
-
-        .dropdown-content li {
-            margin-bottom: 0px;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="matt.jpg" alt="我的照片" id="about-photo">
-        <h1 id="welcome">张健夫</h1>
-        <nav>
+    <header class="site-header">
+        <div class="branding">
+            <img src="matt.jpg" alt="张健夫照片" id="about-photo">
+            <div class="brand-text">
+                <p class="eyebrow" id="eyebrow">上海交通大学 | 清源研究院</p>
+                <h1 id="welcome">张健夫</h1>
+                <p class="subtitle" id="role-subtitle">助理教授 · 人工智能 &amp; 计算机视觉</p>
+            </div>
+        </div>
+        <nav class="main-nav">
             <ul>
-                <li><a href="#about" id="nav-about">关于我</a></li>
+                <li><a href="#about" id="nav-about">关于</a></li>
                 <li><a href="#research" id="nav-research">研究</a></li>
-                <li><a href="#courses" id="nav-courses">课程</a></li>
-                <li><a href="#contact" id="nav-contact">联系我</a></li>
+                <li><a href="#courses" id="nav-courses">教学</a></li>
+                <li><a href="#contact" id="nav-contact">联系</a></li>
             </ul>
         </nav>
-        <button id="language-toggle">EN</button>
+        <button class="language-toggle" id="language-toggle" aria-label="切换语言">EN</button>
     </header>
-    <main>
-        <section id="about">
-            <h2 id="about-title">关于我</h2>
-            <p id="about-content">上海交通大学 电子信息与电气工程学院 清源研究院 助理教授。本科毕业于上海交通大学ACM班，博士毕业于上海交通大学计算机科学与工程系，师从<a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">张丽清教授</a>、<a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">俞勇教授</a>及<a href="https://qibinzhao.github.io/" target="_blank">赵启斌博士</a>。</p>
+    <main class="content">
+        <section id="about" class="panel">
+            <div class="section-heading">
+                <div>
+                    <p class="section-caption" id="about-caption">学术简介</p>
+                    <h2 id="about-title">科研与教学</h2>
+                </div>
+                <div class="heading-accent"></div>
+            </div>
+            <p id="about-content">上海交通大学电子信息与电气工程学院清源研究院助理教授。本科毕业于上海交通大学 ACM 班，博士毕业于上海交通大学计算机科学与工程系，师从 <a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">张丽清教授</a>、<a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">俞勇教授</a> 与 <a href="https://qibinzhao.github.io/" target="_blank">赵启斌博士</a>，长期从事人工智能与计算机视觉研究。</p>
+            <div class="meta-grid">
+                <div class="meta-card" id="meta-position">助理教授，上海交通大学清源研究院 / 电子信息与电气工程学院</div>
+                <div class="meta-card" id="meta-education">上海交通大学计算机科学与工程系博士；ACM 班学士</div>
+                <div class="meta-card" id="meta-advisor">合作/指导：张丽清教授、俞勇教授、赵启斌博士</div>
+            </div>
         </section>
-        <section id="research">
-            <h2 id="research-title">研究</h2>
-            <p id="research-content">我的研究兴趣包括：人工智能 计算机视觉 生成模型 可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> 和 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a>。</p>
-            <img src="topic.png" alt="研究方向词云" id="research-wordcloud">
+        <section id="research" class="panel">
+            <div class="section-heading">
+                <div>
+                    <p class="section-caption" id="research-caption">Research</p>
+                    <h2 id="research-title">可信视觉与生成模型</h2>
+                </div>
+                <div class="heading-accent"></div>
+            </div>
+            <p id="research-content">研究聚焦可信的视觉基础模型与生成式模型，涵盖自监督预训练、可解释性与可靠性、多模态感知以及人机协同 AI。代表性成果与最新工作可在 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> 与 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a> 中查看。</p>
+            <div class="focus-list" aria-label="研究关键词">
+                <span class="focus-pill" data-focus-index="0">基础模型</span>
+                <span class="focus-pill" data-focus-index="1">生成式视觉</span>
+                <span class="focus-pill" data-focus-index="2">可信 AI</span>
+                <span class="focus-pill" data-focus-index="3">自监督 / 多模态</span>
+            </div>
+            <div class="research-grid">
+                <img src="topic.png" alt="研究方向词云" id="research-wordcloud" class="research-figure">
+                <div class="highlight-cards">
+                    <article class="highlight-card">
+                        <p class="eyebrow" id="scholar-card-caption">学术成果</p>
+                        <h3 id="scholar-card-title">Google Scholar</h3>
+                        <p id="scholar-card-desc">持续产出在人工智能与计算机视觉领域的研究成果，涵盖生成模型、可解释性和可靠性等方向。</p>
+                        <div class="cta-row">
+                            <a class="button ghost" href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" id="scholar-button">查看引用与论文</a>
+                            <a class="button" href="job2024.pdf" target="_blank" id="recent-work-button">近期工作概览</a>
+                        </div>
+                    </article>
+                    <article class="highlight-card">
+                        <p class="eyebrow" id="collab-card-caption">合作与团队</p>
+                        <h3 id="collab-card-title">开放合作</h3>
+                        <p id="collab-card-desc">欢迎对生成式视觉、可解释性与可信 AI 感兴趣的学生与研究者联系，共同推进交叉创新。</p>
+                    </article>
+                </div>
+            </div>
         </section>
-        <section id="courses">
-            <h2 id="courses-title">课程</h2>
-            <ul id="courses-list">
-                <li>
-                    <a href="#" id="course1-link" onclick="toggleDropdown('course1-dropdown')">CS3964 图像处理与视觉</a>
+        <section id="courses" class="panel">
+            <div class="section-heading">
+                <div>
+                    <p class="section-caption" id="courses-caption">Teaching</p>
+                    <h2 id="courses-title">课程与讲义</h2>
+                </div>
+                <div class="heading-accent"></div>
+            </div>
+            <ul id="courses-list" class="course-list">
+                <li class="course-item">
+                    <div class="course-header">
+                        <a href="#" id="course1-link" class="course-title" onclick="toggleDropdown('course1-dropdown'); return false;">CS3964 图像处理与视觉</a>
+                        <span class="course-badge" id="course1-badge">本科课程</span>
+                    </div>
                     <ul id="course1-dropdown" class="dropdown-content">
                         <li><a href="导论.pdf" id="course1-intro-link" target="_blank">导论</a></li>
                         <li><a href="几何模型.pdf" id="course1-geometry-link" target="_blank">几何模型</a></li>
@@ -125,79 +102,34 @@
                         <li><a href="生成模型.pdf" id="course1-generation-link" target="_blank">图像生成</a></li>
                     </ul>
                 </li>
-                <li><a href="https://cs7353.pages.dev/" id="course2-link" target="_blank">CS7353 设计和理解深度神经网络</a></li>
-                <li><a href="course3.pdf" id="course3-link" target="_blank">CS3969 视觉内容生成</a></li>
+                <li class="course-item">
+                    <div class="course-header">
+                        <a href="https://cs7353.pages.dev/" id="course2-link" class="course-title" target="_blank">CS7353 设计和理解深度神经网络</a>
+                        <span class="course-badge" id="course2-badge">研究生课程</span>
+                    </div>
+                </li>
+                <li class="course-item">
+                    <div class="course-header">
+                        <a href="course3.pdf" id="course3-link" class="course-title" target="_blank">CS3969 视觉内容生成</a>
+                        <span class="course-badge" id="course3-badge">本科课程</span>
+                    </div>
+                </li>
             </ul>
         </section>
-        <section id="contact">
-            <h2 id="contact-title">联系我</h2>
-            <p id="contact-content">邮箱 c [dot] sis [at] sjtu [dot] edu [dot] cn</p>
+        <section id="contact" class="panel contact">
+            <div class="section-heading">
+                <div>
+                    <p class="section-caption" id="contact-caption">Contact</p>
+                    <h2 id="contact-title">联系与合作</h2>
+                </div>
+                <div class="heading-accent"></div>
+            </div>
+            <p id="contact-content">邮箱：c [dot] sis [at] sjtu [dot] edu [dot] cn。期待与对生成式视觉、可信 AI 及相关交叉方向感兴趣的同仁交流合作。</p>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Jianfu Zhang | __Matt__ @ Qingyuan Institute, SJTU</p>
+    <footer class="site-footer">
+        <p id="footer-text">&copy; 2024 张健夫 | Qingyuan Institute, Shanghai Jiao Tong University</p>
     </footer>
     <script src="script.js"></script>
-    <script>
-        function toggleDropdown(id) {
-            var dropdown = document.getElementById(id);
-            if (dropdown.style.display === "none" || dropdown.style.display === "") {
-                dropdown.style.display = "block";
-            } else {
-                dropdown.style.display = "none";
-            }
-        }
-
-        document.getElementById('language-toggle').addEventListener('click', function() {
-            const currentLang = document.documentElement.lang;
-            if (currentLang === 'zh-CN') {
-                document.documentElement.lang = 'en';
-                document.getElementById('welcome').textContent = 'Jianfu Zhang';
-                document.getElementById('nav-about').textContent = 'About Me';
-                document.getElementById('nav-research').textContent = 'Research';
-                document.getElementById('nav-courses').textContent = 'Courses';
-                document.getElementById('nav-contact').textContent = 'Contact Me';
-                document.getElementById('about-title').textContent = 'About Me';
-                document.getElementById('about-content').innerHTML = 'Assistant Professor at Qingyuan Institute, School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University. I received my bachelor\'s degree from the ACM Honors Class at Shanghai Jiao Tong University and my Ph.D. from the Department of Computer Science and Engineering at the same university. Throughout my academic journey, I have had the privilege of guidance and collaboration with <a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">Prof. Liqing Zhang</a>, <a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">Prof. Yong Yu</a>, and <a href="https://qibinzhao.github.io/" target="_blank">Dr. Qibin Zhao</a>.';
-                document.getElementById('research-title').textContent = 'Research';
-                document.getElementById('research-content').innerHTML = 'My research interests include: Artificial Intelligence, Computer Vision, Generative Models, Trustworthy Models. For more details, please refer to <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> and <a href="job2024.pdf" id="recent-work-link" target="_blank">Recent Work</a>.';
-                document.getElementById('courses-title').textContent = 'Courses';
-                document.getElementById('course1-link').textContent = 'CS3964 Image Processing and Vision';
-                document.getElementById('course1-intro-link').textContent = 'Introduction';
-                document.getElementById('course1-geometry-link').textContent = 'Geometric Models';
-                document.getElementById('course1-statistics-link').textContent = 'Statistical Models';
-                document.getElementById('course1-deep-link').textContent = 'Deep Models';
-                document.getElementById('course1-generation-link').textContent = 'Image Generation';
-                document.getElementById('course2-link').textContent = 'CS7353 Designing and Understanding Deep Neural Networks';
-                document.getElementById('course3-link').textContent = 'CS3969 Visual Content Generation';
-                document.getElementById('contact-title').textContent = 'Contact Me';
-                document.getElementById('contact-content').textContent = 'Email: c [dot] sis [at] sjtu [dot] edu [dot] cn';
-                this.textContent = 'CN';
-            } else {
-                document.documentElement.lang = 'zh-CN';
-                document.getElementById('welcome').textContent = '张健夫';
-                document.getElementById('nav-about').textContent = '关于我';
-                document.getElementById('nav-research').textContent = '研究';
-                document.getElementById('nav-courses').textContent = '课程';
-                document.getElementById('nav-contact').textContent = '联系我';
-                document.getElementById('about-title').textContent = '关于我';
-                document.getElementById('about-content').innerHTML = '上海交通大学 电子信息与电气工程学院 清源研究院 助理教授。本科毕业于上海交通大学ACM班，博士毕业于上海交通大学计算机科学与工程系，师从<a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">张丽清教授</a>、<a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">俞勇教授</a>及<a href="https://qibinzhao.github.io/" target="_blank">赵启斌博士</a>。';
-                document.getElementById('research-title').textContent = '研究';
-                document.getElementById('research-content').innerHTML = '我的研究兴趣包括：人工智能 计算机视觉 生成模型 可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> 和 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a>。';
-                document.getElementById('courses-title').textContent = '课程';
-                document.getElementById('course1-link').textContent = 'CS3964 图像处理与视觉';
-                document.getElementById('course1-intro-link').textContent = '导论';
-                document.getElementById('course1-geometry-link').textContent = '几何模型';
-                document.getElementById('course1-statistics-link').textContent = '统计模型';
-                document.getElementById('course1-deep-link').textContent = '深度模型';
-                document.getElementById('course1-generation-link').textContent = '图像生成';
-                document.getElementById('course2-link').textContent = 'CS7353 设计和理解深度神经网络';
-                document.getElementById('course3-link').textContent = 'CS3969 视觉内容生成';
-                document.getElementById('contact-title').textContent = '联系我';
-                document.getElementById('contact-content').textContent = '邮箱 c [dot] sis [at] sjtu [dot] edu [dot] cn';
-                this.textContent = 'EN';
-            }
-        });
-    </script>
 </body>
 </html>
