@@ -200,6 +200,34 @@
           "https://arxiv.org/abs/2405.19707"
         ]
       ]
+    },
+    {
+      "authors": [
+        "Yikun Ji",
+        "Yan Hong",
+        "Qi Fan",
+        "Jun Lan",
+        "Huijia Zhu",
+        "Weiqiang Wang",
+        "Liqing Zhang",
+        "Jianfu Zhang"
+      ],
+      "title": "FakeXplain: AI-Generated Image Detection via Human-Aligned Grounded Reasoning",
+      "venue": "ICLR",
+      "year": 2026,
+      "links": [
+        [
+          "OpenReview",
+          "https://openreview.net/forum?id=UcpTOa8OnG"
+        ],
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2506.07045"
+        ]
+      ],
+      "aliases": [
+        "Interpretable and Reliable Detection of AI-Generated Images via Grounded Reasoning in MLLMs"
+      ]
     }
   ]
 }
