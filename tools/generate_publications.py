@@ -54,6 +54,7 @@ S2_VENUE_MAP = {
     "ACM International Conference on Multimedia": "ACM Multimedia",
     "ACM Multimedia": "ACM Multimedia",
     "IEEE International Conference on Multimedia and Expo": "ICME",
+    "IEEE International Conference on Image Processing": "ICIP",
 }
 
 

@@ -155,48 +155,6 @@
     },
     {
       "authors": [
-        "Haozhen Yan",
-        "Yan Hong",
-        "Jiahui Zhan",
-        "Suning Lang",
-        "Yikun Ji",
-        "Yujie Gao",
-        "Huijia Zhu",
-        "Jun Lan",
-        "Jianfu Zhang"
-      ],
-      "title": "COCO-Inpaint: A Benchmark for Detecting and Localizing Inpainting-Based Image Manipulations",
-      "venue": "ICIP",
-      "year": 2026,
-      "links": [
-        [
-          "arXiv",
-          "https://arxiv.org/abs/2504.18361"
-        ]
-      ],
-      "aliases": [
-        "COCO-Inpaint: A Benchmark for Image Inpainting Detection and Manipulation Localization"
-      ]
-    },
-    {
-      "authors": [
-        "Xinhao Hu",
-        "Yiyi Zhang",
-        "Liqing Zhang",
-        "Jianfu Zhang"
-      ],
-      "title": "Enhancing Domain Generalization in 3D Human Pose Estimation through Controllable Generative Augmentation",
-      "venue": "ICME",
-      "year": 2026,
-      "links": [
-        [
-          "arXiv",
-          "https://arxiv.org/abs/2605.12198"
-        ]
-      ]
-    },
-    {
-      "authors": [
         "Jiahui Zhan",
         "Xianbing Sun",
         "Xiangnan Zhu",
@@ -242,21 +200,6 @@
           "https://arxiv.org/abs/2405.19707"
         ]
       ]
-    },
-    {
-      "authors": [
-        "Shengyi Wu",
-        "Lingxiao Lu",
-        "Xianbing Sun",
-        "Zheng Wang",
-        "Jianlou Si",
-        "Liqing Zhang",
-        "Jianfu Zhang"
-      ],
-      "title": "SelfVTON: Enhancing Virtual Try-On with Self-Supervised Cloth Detailing and Body Alignment",
-      "venue": "ICIP",
-      "year": 2026,
-      "links": []
     }
   ]
 }
