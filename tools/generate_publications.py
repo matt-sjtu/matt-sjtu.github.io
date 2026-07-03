@@ -187,14 +187,17 @@ def load_extra(dblp_pubs):
 
     An extra entry is dropped (with a notice) once DBLP lists the same title
     formally, so acceptances can be registered early and cleaned up later.
+    Optional "aliases" (e.g. the preprint title of a renamed paper) join the
+    dedupe set so the S2 pass cannot re-add the same work under its old name.
+    Returns (entries, alias_norms).
     """
     if not os.path.exists(EXTRA_JSON):
-        return []
+        return [], set()
     data = json.load(open(EXTRA_JSON, encoding="utf-8"))
-    dblp_titles = {p["title"].lower() for p in dblp_pubs}
-    merged = []
+    dblp_norms = {norm_title(p["title"]) for p in dblp_pubs}
+    merged, alias_norms = [], set()
     for e in data.get("publications", []):
-        if e["title"].lower() in dblp_titles:
+        if is_known(e["title"], dblp_norms):
             print(f"note: '{e['title'][:50]}...' is now on DBLP; "
                   f"remove it from extra_publications.json")
             continue
@@ -207,7 +210,9 @@ def load_extra(dblp_pubs):
             "venue": e["venue"],
             "links": [tuple(l) for l in e.get("links", [])],
         })
-    return merged
+        for alias in e.get("aliases", []):
+            alias_norms.add(norm_title(alias))
+    return merged, alias_norms
 
 
 def esc(s):
@@ -348,9 +353,10 @@ def main():
     pubs, preprints = parse_pubs(xml_text)
     if not pubs:
         sys.exit("no formal publications parsed — aborting")
-    pubs += load_extra(pubs)
+    extra, alias_norms = load_extra(pubs)
+    pubs += extra
     if not args.skip_s2:
-        known = {norm_title(p["title"]) for p in pubs}
+        known = {norm_title(p["title"]) for p in pubs} | alias_norms
         try:
             pubs += augment_from_s2(preprints, known)
         except Exception as ex:  # S2 outage must not break the build

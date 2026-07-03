@@ -1,4 +1,107 @@
 {
   "_readme": "Papers accepted but not yet indexed by DBLP. Each entry: authors (full list, exact 'Jianfu Zhang' for bolding), title, venue (e.g. 'ICLR'), year, optional links [[label, url], ...]. Entries are dropped automatically once DBLP lists the same title — the generator prints a reminder to delete them here.",
-  "publications": []
+  "publications": [
+    {
+      "authors": [
+        "Xianbing Sun",
+        "Zhikai Zhu",
+        "Zhengyu Lou",
+        "Bo Yang",
+        "Jinyang Tang",
+        "Liqing Zhang",
+        "He Wang",
+        "Jianfu Zhang"
+      ],
+      "title": "AVGGT: Rethinking Global Attention for Accelerating VGGT",
+      "venue": "CVPR",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2512.02541"
+        ]
+      ]
+    },
+    {
+      "authors": [
+        "Haozhen Yan",
+        "Yan Hong",
+        "Jiahui Zhan",
+        "Yikun Ji",
+        "Jun Lan",
+        "Huijia Zhu",
+        "Weiqiang Wang",
+        "Jianfu Zhang"
+      ],
+      "title": "COCO-Inpaint: A Benchmark for Image Inpainting Detection and Manipulation Localization",
+      "venue": "ICIP",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2504.18361"
+        ]
+      ]
+    },
+    {
+      "authors": [
+        "Xinhao Hu",
+        "Yiyi Zhang",
+        "Liqing Zhang",
+        "Jianfu Zhang"
+      ],
+      "title": "Enhancing Domain Generalization in 3D Human Pose Estimation through Controllable Generative Augmentation",
+      "venue": "ICME",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2605.12198"
+        ]
+      ]
+    },
+    {
+      "authors": [
+        "Haozhen Yan",
+        "Yan Hong",
+        "Suning Lang",
+        "Jiahui Zhan",
+        "Yikun Ji",
+        "Yujie Gao",
+        "Jun Lan",
+        "Huijia Zhu",
+        "Weiqiang Wang",
+        "Jianfu Zhang"
+      ],
+      "title": "GAMMA: Generalizable Alignment via Multi-task and Manipulation-Augmented Training for AI-Generated Image Detection",
+      "venue": "ICASSP",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2509.10250"
+        ]
+      ]
+    },
+    {
+      "authors": [
+        "Jiahui Zhan",
+        "Xianbing Sun",
+        "Xiangnan Zhu",
+        "Yikun Ji",
+        "Ruitong Liu",
+        "Liqing Zhang",
+        "Jianfu Zhang"
+      ],
+      "title": "Towards Source-Aware Object Swapping with Initial Noise Perturbation",
+      "venue": "CVPR Findings",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2602.23697"
+        ]
+      ]
+    }
+  ]
 }
