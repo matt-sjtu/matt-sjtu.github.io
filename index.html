@@ -3,201 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matt-SJTU</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background-color: #f4f4f4;
-            border-bottom: 1px solid #ccc;
-        }
-
-        #about-photo {
-            width: 200px;
-            height: auto; /* 保持图片比例 */
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 48px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        button {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        section {
-            margin-bottom: 20px;
-        }
-
-        #research-wordcloud {
-            width: 600px; /* 调整图片宽度 */
-            height: auto; /* 保持图片比例 */
-            display: block;
-            margin: 20px auto; /* 居中显示 */
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #f4f4f4;
-            border-top: 1px solid #ccc;
-        }
-
-        .dropdown-content {
-            display: none;
-            list-style: none;
-            padding-left: 20px;
-        }
-
-        .dropdown-content li {
-            margin-bottom: 0px;
-        }
-    </style>
+    <title>张健夫 | 上海交通大学计算机学院</title>
+    <meta name="description" content="张健夫（Jianfu Zhang），上海交通大学计算机学院副教授，任职于清源研究院与机器智能研究所。研究方向：人工智能、计算机视觉、生成模型、可信模型。">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="张健夫 Jianfu Zhang">
+    <meta property="og:description" content="上海交通大学计算机学院副教授 · 清源研究院 · 机器智能研究所。研究方向：人工智能、计算机视觉、生成模型、可信模型。">
+    <meta property="og:url" content="https://matt-sjtu.github.io/">
+    <meta property="og:image" content="https://matt-sjtu.github.io/matt.jpg">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="matt.jpg" alt="我的照片" id="about-photo">
-        <h1 id="welcome">张健夫</h1>
-        <nav>
-            <ul>
-                <li><a href="#about" id="nav-about">关于我</a></li>
-                <li><a href="#research" id="nav-research">研究</a></li>
-                <li><a href="#courses" id="nav-courses">课程</a></li>
-                <li><a href="#contact" id="nav-contact">联系我</a></li>
-            </ul>
-        </nav>
-        <button id="language-toggle">EN</button>
-    </header>
-    <main>
-        <section id="about">
-            <h2 id="about-title">关于我</h2>
-            <p id="about-content">上海交通大学 电子信息与电气工程学院 清源研究院 助理教授。本科毕业于上海交通大学ACM班，博士毕业于上海交通大学计算机科学与工程系，师从<a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">张丽清教授</a>、<a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">俞勇教授</a>及<a href="https://qibinzhao.github.io/" target="_blank">赵启斌博士</a>。</p>
-        </section>
-        <section id="research">
-            <h2 id="research-title">研究</h2>
-            <p id="research-content">我的研究兴趣包括：人工智能 计算机视觉 生成模型 可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> 和 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a>。</p>
-            <img src="topic.png" alt="研究方向词云" id="research-wordcloud">
-        </section>
-        <section id="courses">
-            <h2 id="courses-title">课程</h2>
-            <ul id="courses-list">
-                <li>
-                    <a href="#" id="course1-link" onclick="toggleDropdown('course1-dropdown')">CS3964 图像处理与视觉</a>
-                    <ul id="course1-dropdown" class="dropdown-content">
-                        <li><a href="导论.pdf" id="course1-intro-link" target="_blank">导论</a></li>
-                        <li><a href="几何模型.pdf" id="course1-geometry-link" target="_blank">几何模型</a></li>
-                        <li><a href="统计模型.pdf" id="course1-statistics-link" target="_blank">统计模型</a></li>
-                        <li><a href="深度模型.pdf" id="course1-deep-link" target="_blank">深度模型</a></li>
-                        <li><a href="生成模型.pdf" id="course1-generation-link" target="_blank">图像生成</a></li>
-                    </ul>
-                </li>
-                <li><a href="https://cs7353.pages.dev/" id="course2-link" target="_blank">CS7353 设计和理解深度神经网络</a></li>
-                <li><a href="course3.pdf" id="course3-link" target="_blank">CS3969 视觉内容生成</a></li>
-            </ul>
-        </section>
-        <section id="contact">
-            <h2 id="contact-title">联系我</h2>
-            <p id="contact-content">邮箱 c [dot] sis [at] sjtu [dot] edu [dot] cn</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Jianfu Zhang | __Matt__ @ Qingyuan Institute, SJTU</p>
-    </footer>
-    <script src="script.js"></script>
+    <div class="page">
+        <header>
+            <img src="matt.jpg" alt="张健夫的照片" id="about-photo">
+            <div class="identity">
+                <h1 data-i18n="name">张健夫</h1>
+                <p class="subtitle" data-i18n="subtitle">上海交通大学 计算机学院 副教授 · 清源研究院 · 机器智能研究所</p>
+                <p class="quick-links">
+                    <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+                    <a href="https://matt-lab.org" target="_blank" rel="noopener" data-i18n="labLink">实验室</a>
+                    <a href="#contact" data-i18n="emailLink">邮箱</a>
+                </p>
+            </div>
+            <button id="language-toggle" aria-label="Switch language">EN</button>
+        </header>
+        <main>
+            <section id="about">
+                <h2 data-i18n="aboutTitle">关于我</h2>
+                <p data-i18n-html="aboutContent"></p>
+            </section>
+            <section id="research">
+                <h2 data-i18n="researchTitle">研究方向</h2>
+                <p data-i18n-html="researchContent"></p>
+                <img src="topic.png" alt="研究方向词云" id="research-wordcloud" width="1800" height="900" loading="lazy">
+            </section>
+            <section id="courses">
+                <h2 data-i18n="coursesTitle">课程</h2>
+                <ul class="course-list">
+                    <li><a href="courses/cs3964.html" data-i18n="course1">CS3964 图像处理与视觉</a></li>
+                    <li><a href="https://cs7353.pages.dev/" target="_blank" rel="noopener" data-i18n="course2">CS7353 设计和理解深度神经网络</a></li>
+                    <li><a href="courses/cs3969.html" data-i18n="course3">CS3969 视觉内容生成</a></li>
+                    <li><span data-i18n="course4">CS3339 机器学习（强化）</span></li>
+                </ul>
+            </section>
+            <section id="contact">
+                <h2 data-i18n="contactTitle">联系我</h2>
+                <p data-i18n="contactContent">邮箱：c [dot] sis [at] sjtu [dot] edu [dot] cn</p>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; Jianfu Zhang | __Matt__ @ School of Computer Science, SJTU</p>
+        </footer>
+    </div>
     <script>
-        function toggleDropdown(id) {
-            var dropdown = document.getElementById(id);
-            if (dropdown.style.display === "none" || dropdown.style.display === "") {
-                dropdown.style.display = "block";
-            } else {
-                dropdown.style.display = "none";
+        const i18n = {
+            'zh-CN': {
+                name: '张健夫',
+                subtitle: '上海交通大学 计算机学院 副教授 · 清源研究院 · 机器智能研究所',
+                labLink: '实验室',
+                emailLink: '邮箱',
+                aboutTitle: '关于我',
+                aboutContent: '我现任上海交通大学计算机学院副教授，任职于清源研究院与机器智能研究所。我本科毕业于上海交通大学ACM班，并于上海交通大学计算机科学与工程系获得博士学位，师从<a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank" rel="noopener">张丽清教授</a>、<a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank" rel="noopener">俞勇教授</a>及<a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">赵启斌博士</a>。',
+                researchTitle: '研究方向',
+                researchContent: '我的研究兴趣包括：人工智能、计算机视觉、生成模型、可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a> 和 <a href="https://matt-lab.org" target="_blank" rel="noopener">实验室主页</a>。',
+                coursesTitle: '课程',
+                course1: 'CS3964 图像处理与视觉',
+                course2: 'CS7353 设计和理解深度神经网络',
+                course3: 'CS3969 视觉内容生成',
+                course4: 'CS3339 机器学习（强化）',
+                contactTitle: '联系我',
+                contactContent: '邮箱：c [dot] sis [at] sjtu [dot] edu [dot] cn',
+                toggleLabel: 'EN',
+                photoAlt: '张健夫的照片',
+                docTitle: '张健夫 | 上海交通大学计算机学院'
+            },
+            'en': {
+                name: 'Jianfu Zhang',
+                subtitle: 'Associate Professor, School of Computer Science, Shanghai Jiao Tong University',
+                labLink: 'Lab',
+                emailLink: 'Email',
+                aboutTitle: 'About Me',
+                aboutContent: 'I am an Associate Professor at the School of Computer Science, Shanghai Jiao Tong University, affiliated with the Qingyuan Research Institute and the Institute of Machine Intelligence. I received my bachelor\'s degree from the ACM Honors Class at Shanghai Jiao Tong University, and completed my Ph.D. in the Department of Computer Science and Engineering at the same university, where I was fortunate to be advised by <a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank" rel="noopener">Prof. Liqing Zhang</a>, <a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank" rel="noopener">Prof. Yong Yu</a>, and <a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Dr. Qibin Zhao</a>.',
+                researchTitle: 'Research',
+                researchContent: 'My research interests include: Artificial Intelligence, Computer Vision, Generative Models, and Trustworthy Models. For more details, please refer to <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a> and the <a href="https://matt-lab.org" target="_blank" rel="noopener">lab homepage</a>.',
+                coursesTitle: 'Courses',
+                course1: 'CS3964 Image Processing and Vision',
+                course2: 'CS7353 Designing and Understanding Deep Neural Networks',
+                course3: 'CS3969 Visual Content Generation',
+                course4: 'CS3339 Machine Learning (Enhanced)',
+                contactTitle: 'Contact',
+                contactContent: 'Email: c [dot] sis [at] sjtu [dot] edu [dot] cn',
+                toggleLabel: '中文',
+                photoAlt: 'Photo of Jianfu Zhang',
+                docTitle: 'Jianfu Zhang | School of Computer Science, SJTU'
             }
+        };
+
+        function applyLanguage(lang) {
+            const dict = i18n[lang];
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = dict[el.dataset.i18n];
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                el.innerHTML = dict[el.dataset.i18nHtml];
+            });
+            document.getElementById('about-photo').alt = dict.photoAlt;
+            document.title = dict.docTitle;
+            document.getElementById('language-toggle').textContent = dict.toggleLabel;
+            try { localStorage.setItem('lang', lang); } catch (e) {}
         }
 
-        document.getElementById('language-toggle').addEventListener('click', function() {
-            const currentLang = document.documentElement.lang;
-            if (currentLang === 'zh-CN') {
-                document.documentElement.lang = 'en';
-                document.getElementById('welcome').textContent = 'Jianfu Zhang';
-                document.getElementById('nav-about').textContent = 'About Me';
-                document.getElementById('nav-research').textContent = 'Research';
-                document.getElementById('nav-courses').textContent = 'Courses';
-                document.getElementById('nav-contact').textContent = 'Contact Me';
-                document.getElementById('about-title').textContent = 'About Me';
-                document.getElementById('about-content').innerHTML = 'Assistant Professor at Qingyuan Institute, School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University. I received my bachelor\'s degree from the ACM Honors Class at Shanghai Jiao Tong University and my Ph.D. from the Department of Computer Science and Engineering at the same university. Throughout my academic journey, I have had the privilege of guidance and collaboration with <a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">Prof. Liqing Zhang</a>, <a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">Prof. Yong Yu</a>, and <a href="https://qibinzhao.github.io/" target="_blank">Dr. Qibin Zhao</a>.';
-                document.getElementById('research-title').textContent = 'Research';
-                document.getElementById('research-content').innerHTML = 'My research interests include: Artificial Intelligence, Computer Vision, Generative Models, Trustworthy Models. For more details, please refer to <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> and <a href="job2024.pdf" id="recent-work-link" target="_blank">Recent Work</a>.';
-                document.getElementById('courses-title').textContent = 'Courses';
-                document.getElementById('course1-link').textContent = 'CS3964 Image Processing and Vision';
-                document.getElementById('course1-intro-link').textContent = 'Introduction';
-                document.getElementById('course1-geometry-link').textContent = 'Geometric Models';
-                document.getElementById('course1-statistics-link').textContent = 'Statistical Models';
-                document.getElementById('course1-deep-link').textContent = 'Deep Models';
-                document.getElementById('course1-generation-link').textContent = 'Image Generation';
-                document.getElementById('course2-link').textContent = 'CS7353 Designing and Understanding Deep Neural Networks';
-                document.getElementById('course3-link').textContent = 'CS3969 Visual Content Generation';
-                document.getElementById('contact-title').textContent = 'Contact Me';
-                document.getElementById('contact-content').textContent = 'Email: c [dot] sis [at] sjtu [dot] edu [dot] cn';
-                this.textContent = 'CN';
-            } else {
-                document.documentElement.lang = 'zh-CN';
-                document.getElementById('welcome').textContent = '张健夫';
-                document.getElementById('nav-about').textContent = '关于我';
-                document.getElementById('nav-research').textContent = '研究';
-                document.getElementById('nav-courses').textContent = '课程';
-                document.getElementById('nav-contact').textContent = '联系我';
-                document.getElementById('about-title').textContent = '关于我';
-                document.getElementById('about-content').innerHTML = '上海交通大学 电子信息与电气工程学院 清源研究院 助理教授。本科毕业于上海交通大学ACM班，博士毕业于上海交通大学计算机科学与工程系，师从<a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank">张丽清教授</a>、<a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank">俞勇教授</a>及<a href="https://qibinzhao.github.io/" target="_blank">赵启斌博士</a>。';
-                document.getElementById('research-title').textContent = '研究';
-                document.getElementById('research-content').innerHTML = '我的研究兴趣包括：人工智能 计算机视觉 生成模型 可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" id="google-scholar-link" target="_blank">Google Scholar</a> 和 <a href="job2024.pdf" id="recent-work-link" target="_blank">近期工作</a>。';
-                document.getElementById('courses-title').textContent = '课程';
-                document.getElementById('course1-link').textContent = 'CS3964 图像处理与视觉';
-                document.getElementById('course1-intro-link').textContent = '导论';
-                document.getElementById('course1-geometry-link').textContent = '几何模型';
-                document.getElementById('course1-statistics-link').textContent = '统计模型';
-                document.getElementById('course1-deep-link').textContent = '深度模型';
-                document.getElementById('course1-generation-link').textContent = '图像生成';
-                document.getElementById('course2-link').textContent = 'CS7353 设计和理解深度神经网络';
-                document.getElementById('course3-link').textContent = 'CS3969 视觉内容生成';
-                document.getElementById('contact-title').textContent = '联系我';
-                document.getElementById('contact-content').textContent = '邮箱 c [dot] sis [at] sjtu [dot] edu [dot] cn';
-                this.textContent = 'EN';
-            }
+        document.getElementById('language-toggle').addEventListener('click', function () {
+            applyLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh-CN');
         });
+
+        let initialLang = 'zh-CN';
+        try {
+            const saved = localStorage.getItem('lang');
+            if (saved && i18n[saved]) initialLang = saved;
+        } catch (e) {}
+        applyLanguage(initialLang);
     </script>
 </body>
 </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS3969 视觉内容生成 | 张健夫</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="identity">
+                <h1 data-i18n="title">CS3969 视觉内容生成</h1>
+                <p class="subtitle" data-i18n="subtitle">授课教师：张健夫 · 上海交通大学 计算机学院</p>
+                <p class="quick-links">
+                    <a href="../index.html" data-i18n="backHome">返回主页</a>
+                </p>
+            </div>
+            <button id="language-toggle" aria-label="Switch language">EN</button>
+        </header>
+        <main>
+            <section>
+                <h2 data-i18n="lecturesTitle">讲义</h2>
+                <ol class="lecture-list lecture-list-flat">
+                    <li><a href="cs3969/01-introduction.pdf" target="_blank" rel="noopener" data-i18n="l01">Introduction</a></li>
+                    <li><a href="cs3969/02-image-prior.pdf" target="_blank" rel="noopener" data-i18n="l02">Image Prior</a></li>
+                    <li><a href="cs3969/03-vae.pdf" target="_blank" rel="noopener" data-i18n="l03">VAE</a></li>
+                    <li><a href="cs3969/04-auto-regressive-models.pdf" target="_blank" rel="noopener" data-i18n="l04">Auto-Regressive Models</a></li>
+                    <li><a href="cs3969/05-gan.pdf" target="_blank" rel="noopener" data-i18n="l05">GAN</a></li>
+                    <li><a href="cs3969/06-wgan.pdf" target="_blank" rel="noopener" data-i18n="l06">WGAN</a></li>
+                    <li><a href="cs3969/07-stylegan.pdf" target="_blank" rel="noopener" data-i18n="l07">StyleGAN</a></li>
+                    <li><a href="cs3969/08-diffusion-models.pdf" target="_blank" rel="noopener" data-i18n="l08">Diffusion Models</a></li>
+                    <li><a href="cs3969/09-score-matching.pdf" target="_blank" rel="noopener" data-i18n="l09">Score Matching</a></li>
+                    <li><a href="cs3969/10-ddim-and-flow-matching.pdf" target="_blank" rel="noopener" data-i18n="l10">DDIM &amp; Flow Matching</a></li>
+                    <li><a href="cs3969/11-conditional-generation.pdf" target="_blank" rel="noopener" data-i18n="l11">Conditional Generation</a></li>
+                    <li><a href="cs3969/12-editing-and-privacy.pdf" target="_blank" rel="noopener" data-i18n="l12">Editing &amp; Privacy</a></li>
+                    <li><a href="cs3969/13-video-generation.pdf" target="_blank" rel="noopener" data-i18n="l13">Video Generation</a></li>
+                    <li><a href="cs3969/14-3d-and-detection.pdf" target="_blank" rel="noopener" data-i18n="l14">3D &amp; Detection</a></li>
+                </ol>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; Jianfu Zhang | __Matt__ @ School of Computer Science, SJTU</p>
+        </footer>
+    </div>
+    <script>
+        const i18n = {
+            'zh-CN': {
+                title: 'CS3969 视觉内容生成',
+                subtitle: '授课教师：张健夫 · 上海交通大学 计算机学院',
+                backHome: '返回主页',
+                lecturesTitle: '讲义',
+                l01: 'Introduction', l02: 'Image Prior', l03: 'VAE', l04: 'Auto-Regressive Models',
+                l05: 'GAN', l06: 'WGAN', l07: 'StyleGAN', l08: 'Diffusion Models',
+                l09: 'Score Matching', l10: 'DDIM & Flow Matching', l11: 'Conditional Generation',
+                l12: 'Editing & Privacy', l13: 'Video Generation', l14: '3D & Detection',
+                toggleLabel: 'EN',
+                docTitle: 'CS3969 视觉内容生成 | 张健夫'
+            },
+            'en': {
+                title: 'CS3969 Visual Content Generation',
+                subtitle: 'Instructor: Jianfu Zhang · School of Computer Science, Shanghai Jiao Tong University',
+                backHome: 'Back to Homepage',
+                lecturesTitle: 'Lecture Notes',
+                l01: 'Introduction', l02: 'Image Prior', l03: 'VAE', l04: 'Auto-Regressive Models',
+                l05: 'GAN', l06: 'WGAN', l07: 'StyleGAN', l08: 'Diffusion Models',
+                l09: 'Score Matching', l10: 'DDIM & Flow Matching', l11: 'Conditional Generation',
+                l12: 'Editing & Privacy', l13: 'Video Generation', l14: '3D & Detection',
+                toggleLabel: '中文',
+                docTitle: 'CS3969 Visual Content Generation | Jianfu Zhang'
+            }
+        };
+
+        function applyLanguage(lang) {
+            const dict = i18n[lang];
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = dict[el.dataset.i18n];
+            });
+            document.title = dict.docTitle;
+            document.getElementById('language-toggle').textContent = dict.toggleLabel;
+            try { localStorage.setItem('lang', lang); } catch (e) {}
+        }
+
+        document.getElementById('language-toggle').addEventListener('click', function () {
+            applyLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh-CN');
+        });
+
+        let initialLang = 'zh-CN';
+        try {
+            const saved = localStorage.getItem('lang');
+            if (saved && i18n[saved]) initialLang = saved;
+        } catch (e) {}
+        applyLanguage(initialLang);
+    </script>
+</body>
+</html>

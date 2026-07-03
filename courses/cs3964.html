@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS3964 图像处理与视觉 | 张健夫</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="identity">
+                <h1 data-i18n="title">CS3964 图像处理与视觉</h1>
+                <p class="subtitle" data-i18n="subtitle">授课教师：张健夫 · 上海交通大学 计算机学院</p>
+                <p class="quick-links">
+                    <a href="../index.html" data-i18n="backHome">返回主页</a>
+                </p>
+            </div>
+            <button id="language-toggle" aria-label="Switch language">EN</button>
+        </header>
+        <main>
+            <section>
+                <h2 data-i18n="lecturesTitle">讲义</h2>
+                <ol class="lecture-list lecture-list-flat">
+                    <li><a href="cs3964/01-introduction.pdf" target="_blank" rel="noopener" data-i18n="l01">导论</a></li>
+                    <li><a href="cs3964/02-visual-system-and-errors.pdf" target="_blank" rel="noopener" data-i18n="l02">视觉系统与视觉误差</a></li>
+                    <li><a href="cs3964/03-perception-systems.pdf" target="_blank" rel="noopener" data-i18n="l03">感知系统</a></li>
+                    <li><a href="cs3964/04-convolution.pdf" target="_blank" rel="noopener" data-i18n="l04">卷积</a></li>
+                    <li><a href="cs3964/05-feature-detection.pdf" target="_blank" rel="noopener" data-i18n="l05">特征点检测</a></li>
+                    <li><a href="cs3964/06-linear-models.pdf" target="_blank" rel="noopener" data-i18n="l06">线性模型</a></li>
+                    <li><a href="cs3964/07-cnn.pdf" target="_blank" rel="noopener" data-i18n="l07">卷积神经网络</a></li>
+                    <li><a href="cs3964/08-cnn-2.pdf" target="_blank" rel="noopener" data-i18n="l08">卷积神经网络 2</a></li>
+                    <li><a href="cs3964/09-semantic-segmentation.pdf" target="_blank" rel="noopener" data-i18n="l09">语义分割</a></li>
+                    <li><a href="cs3964/10-object-detection.pdf" target="_blank" rel="noopener" data-i18n="l10">物体检测</a></li>
+                    <li><a href="cs3964/11-sequence-models.pdf" target="_blank" rel="noopener" data-i18n="l11">序列模型</a></li>
+                    <li><a href="cs3964/12-transformer.pdf" target="_blank" rel="noopener" data-i18n="l12">Transformer</a></li>
+                    <li><a href="cs3964/13-self-supervised-learning.pdf" target="_blank" rel="noopener" data-i18n="l13">自监督学习</a></li>
+                    <li><a href="cs3964/14-generative-models-overview.pdf" target="_blank" rel="noopener" data-i18n="l14">生成模型综述</a></li>
+                    <li><a href="cs3964/15-vae.pdf" target="_blank" rel="noopener" data-i18n="l15">VAE</a></li>
+                    <li><a href="cs3964/16-auto-regressive.pdf" target="_blank" rel="noopener" data-i18n="l16">自回归模型</a></li>
+                    <li><a href="cs3964/17-gan.pdf" target="_blank" rel="noopener" data-i18n="l17">GAN</a></li>
+                    <li><a href="cs3964/18-stylegan.pdf" target="_blank" rel="noopener" data-i18n="l18">StyleGAN</a></li>
+                    <li><a href="cs3964/19-diffusion-models.pdf" target="_blank" rel="noopener" data-i18n="l19">扩散模型</a></li>
+                    <li><a href="cs3964/20-conditional-and-video-generation.pdf" target="_blank" rel="noopener" data-i18n="l20">条件生成与视频生成</a></li>
+                    <li><a href="cs3964/21-3d-and-aigc-detection.pdf" target="_blank" rel="noopener" data-i18n="l21">3D 与 AIGC 检测</a></li>
+                </ol>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; Jianfu Zhang | __Matt__ @ School of Computer Science, SJTU</p>
+        </footer>
+    </div>
+    <script>
+        const i18n = {
+            'zh-CN': {
+                title: 'CS3964 图像处理与视觉',
+                subtitle: '授课教师：张健夫 · 上海交通大学 计算机学院',
+                backHome: '返回主页',
+                lecturesTitle: '讲义',
+                l01: '导论', l02: '视觉系统与视觉误差', l03: '感知系统', l04: '卷积',
+                l05: '特征点检测', l06: '线性模型', l07: '卷积神经网络', l08: '卷积神经网络 2',
+                l09: '语义分割', l10: '物体检测', l11: '序列模型', l12: 'Transformer',
+                l13: '自监督学习', l14: '生成模型综述', l15: 'VAE', l16: '自回归模型',
+                l17: 'GAN', l18: 'StyleGAN', l19: '扩散模型', l20: '条件生成与视频生成',
+                l21: '3D 与 AIGC 检测',
+                toggleLabel: 'EN',
+                docTitle: 'CS3964 图像处理与视觉 | 张健夫'
+            },
+            'en': {
+                title: 'CS3964 Image Processing and Vision',
+                subtitle: 'Instructor: Jianfu Zhang · School of Computer Science, Shanghai Jiao Tong University',
+                backHome: 'Back to Homepage',
+                lecturesTitle: 'Lecture Notes',
+                l01: 'Introduction', l02: 'Visual System and Visual Errors', l03: 'Perception Systems', l04: 'Convolution',
+                l05: 'Feature Point Detection', l06: 'Linear Models', l07: 'Convolutional Neural Networks', l08: 'Convolutional Neural Networks 2',
+                l09: 'Semantic Segmentation', l10: 'Object Detection', l11: 'Sequence Models', l12: 'Transformer',
+                l13: 'Self-Supervised Learning', l14: 'Overview of Generative Models', l15: 'VAE', l16: 'Auto-Regressive Models',
+                l17: 'GAN', l18: 'StyleGAN', l19: 'Diffusion Models', l20: 'Conditional and Video Generation',
+                l21: '3D and AIGC Detection',
+                toggleLabel: '中文',
+                docTitle: 'CS3964 Image Processing and Vision | Jianfu Zhang'
+            }
+        };
+
+        function applyLanguage(lang) {
+            const dict = i18n[lang];
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = dict[el.dataset.i18n];
+            });
+            document.title = dict.docTitle;
+            document.getElementById('language-toggle').textContent = dict.toggleLabel;
+            try { localStorage.setItem('lang', lang); } catch (e) {}
+        }
+
+        document.getElementById('language-toggle').addEventListener('click', function () {
+            applyLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh-CN');
+        });
+
+        let initialLang = 'zh-CN';
+        try {
+            const saved = localStorage.getItem('lang');
+            if (saved && i18n[saved]) initialLang = saved;
+        } catch (e) {}
+        applyLanguage(initialLang);
+    </script>
+</body>
+</html>
