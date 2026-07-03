@@ -158,13 +158,14 @@
         "Haozhen Yan",
         "Yan Hong",
         "Jiahui Zhan",
+        "Suning Lang",
         "Yikun Ji",
-        "Jun Lan",
+        "Yujie Gao",
         "Huijia Zhu",
-        "Weiqiang Wang",
+        "Jun Lan",
         "Jianfu Zhang"
       ],
-      "title": "COCO-Inpaint: A Benchmark for Image Inpainting Detection and Manipulation Localization",
+      "title": "COCO-Inpaint: A Benchmark for Detecting and Localizing Inpainting-Based Image Manipulations",
       "venue": "ICIP",
       "year": 2026,
       "links": [
@@ -172,6 +173,9 @@
           "arXiv",
           "https://arxiv.org/abs/2504.18361"
         ]
+      ],
+      "aliases": [
+        "COCO-Inpaint: A Benchmark for Image Inpainting Detection and Manipulation Localization"
       ]
     },
     {
@@ -238,6 +242,21 @@
           "https://arxiv.org/abs/2405.19707"
         ]
       ]
+    },
+    {
+      "authors": [
+        "Shengyi Wu",
+        "Lingxiao Lu",
+        "Xianbing Sun",
+        "Zheng Wang",
+        "Jianlou Si",
+        "Liqing Zhang",
+        "Jianfu Zhang"
+      ],
+      "title": "SelfVTON: Enhancing Virtual Try-On with Self-Supervised Cloth Detailing and Body Alignment",
+      "venue": "ICIP",
+      "year": 2026,
+      "links": []
     }
   ]
 }
