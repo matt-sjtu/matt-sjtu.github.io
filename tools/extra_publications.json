@@ -3,6 +3,137 @@
   "publications": [
     {
       "authors": [
+        "Shengyi Wu",
+        "Yan Hong",
+        "Shengyao Chen",
+        "Zheng Wang",
+        "Xianbing Sun",
+        "Jiahui Zhan",
+        "Jun Lan",
+        "Jianfu Zhang"
+      ],
+      "title": "VTONGuard: Automatic Detection and Authentication of AI-generated Virtual Try-On Content",
+      "venue": "ICASSP",
+      "year": 2026,
+      "links": [
+        [
+          "DOI",
+          "https://doi.org/10.1109/ICASSP55912.2026.11463297"
+        ],
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2601.13951"
+        ]
+      ],
+      "aliases": [
+        "VTONGuard: Automatic Detection and Authentication of AI-Generated Virtual Try-On Content"
+      ]
+    },
+    {
+      "authors": [
+        "Jianfu Zhang",
+        "Yan Hong",
+        "Jiahui Zhan",
+        "Jun Lan",
+        "Liqing Zhang"
+      ],
+      "title": "PHomo: Patch Homogeneity for No-Reference Inpainting Assessment and Verification",
+      "venue": "ICASSP",
+      "year": 2026,
+      "links": [
+        [
+          "DOI",
+          "https://doi.org/10.1109/ICASSP55912.2026.11462788"
+        ]
+      ]
+    },
+    {
+      "authors": [
+        "Haozhen Yan",
+        "Yan Hong",
+        "Suning Lang",
+        "Jiahui Zhan",
+        "Yikun Ji",
+        "Yujie Gao",
+        "Huijia Zhu",
+        "Jun Lan",
+        "Jianfu Zhang"
+      ],
+      "title": "GAMMA: Generalizable AI-Generated Image Detection via Multi-Task and Manipulation-Augmented Supervision",
+      "venue": "ICASSP",
+      "year": 2026,
+      "links": [
+        [
+          "DOI",
+          "https://doi.org/10.1109/ICASSP55912.2026.11460946"
+        ],
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2509.10250"
+        ]
+      ],
+      "aliases": [
+        "GAMMA: Generalizable Alignment via Multi-task and Manipulation-Augmented Training for AI-Generated Image Detection"
+      ]
+    },
+    {
+      "authors": [
+        "Zheng Wang",
+        "Xianbing Sun",
+        "Shengyi Wu",
+        "Jiahui Zhan",
+        "Jianlou Si",
+        "Chi Zhang",
+        "Liqing Zhang",
+        "Jianfu Zhang"
+      ],
+      "title": "FW-VTON: Flattening-and-Warping for Person-to-Person Virtual Try-On",
+      "venue": "ICASSP",
+      "year": 2026,
+      "links": [
+        [
+          "DOI",
+          "https://doi.org/10.1109/ICASSP55912.2026.11464329"
+        ],
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2507.16010"
+        ]
+      ],
+      "aliases": [
+        "FW-VTON: Flattening-and-Warping for Person-to-Person Virtual Try-on"
+      ]
+    },
+    {
+      "authors": [
+        "Yikun Ji",
+        "Yan Hong",
+        "Bowen Deng",
+        "Jun Lan",
+        "Huijia Zhu",
+        "Weiqiang Wang",
+        "Liqing Zhang",
+        "Jianfu Zhang"
+      ],
+      "title": "Locate-Then-Examine: Grounded Region Reasoning Improves Detection of AI-Generated Images",
+      "venue": "CVPR",
+      "year": 2026,
+      "links": [
+        [
+          "PDF",
+          "https://openaccess.thecvf.com/content/CVPR2026/papers/Ji_Locate-Then-Examine_Grounded_Region_Reasoning_Improves_Detection_of_AI-Generated_Images_CVPR_2026_paper.pdf"
+        ],
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2510.04225"
+        ]
+      ],
+      "aliases": [
+        "Zoom-In to Sort AI-Generated Images Out"
+      ]
+    },
+    {
+      "authors": [
         "Xianbing Sun",
         "Zhikai Zhu",
         "Zhengyu Lou",
@@ -57,29 +188,6 @@
         [
           "arXiv",
           "https://arxiv.org/abs/2605.12198"
-        ]
-      ]
-    },
-    {
-      "authors": [
-        "Haozhen Yan",
-        "Yan Hong",
-        "Suning Lang",
-        "Jiahui Zhan",
-        "Yikun Ji",
-        "Yujie Gao",
-        "Jun Lan",
-        "Huijia Zhu",
-        "Weiqiang Wang",
-        "Jianfu Zhang"
-      ],
-      "title": "GAMMA: Generalizable Alignment via Multi-task and Manipulation-Augmented Training for AI-Generated Image Detection",
-      "venue": "ICASSP",
-      "year": 2026,
-      "links": [
-        [
-          "arXiv",
-          "https://arxiv.org/abs/2509.10250"
         ]
       ]
     },
