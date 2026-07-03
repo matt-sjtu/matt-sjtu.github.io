@@ -143,7 +143,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>发表论文 | 张健夫</title>
-    <meta name="description" content="张健夫（上海交通大学计算机学院副教授）的发表论文列表：AAAI、CVPR、ICCV、NeurIPS、ICLR、ACM Multimedia 等会议与期刊论文，共 __COUNT__ 篇。">
+    <meta name="description" content="张健夫（上海交通大学计算机学院副教授）的发表论文列表：AAAI、CVPR、ICCV、NeurIPS、ICLR、ACM Multimedia 等会议与期刊论文。">
     <link rel="canonical" href="https://matt-sjtu.github.io/publications.html">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -169,7 +169,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         </header>
         <main>
             <section id="publications">
-                <p class="pub-note" data-i18n-html="note">以下为经同行评审的会议与期刊论文（共 __COUNT__ 篇），按年份倒序。完整列表亦可见 <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> 与 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>。</p>
+                <p class="pub-note" data-i18n-html="note">以下为经同行评审的会议与期刊论文，按年份倒序。完整列表亦可见 <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> 与 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>。</p>
 __ENTRIES__
             </section>
         </main>
@@ -183,7 +183,7 @@ __ENTRIES__
                 title: '发表论文',
                 subtitle: '张健夫 · 上海交通大学 计算机学院',
                 backHome: '返回主页',
-                note: '以下为经同行评审的会议与期刊论文（共 __COUNT__ 篇），按年份倒序。完整列表亦可见 <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> 与 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>。',
+                note: '以下为经同行评审的会议与期刊论文，按年份倒序。完整列表亦可见 <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> 与 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>。',
                 toggleLabel: 'EN',
                 docTitle: '发表论文 | 张健夫'
             },
@@ -191,7 +191,7 @@ __ENTRIES__
                 title: 'Publications',
                 subtitle: 'Jianfu Zhang · School of Computer Science, Shanghai Jiao Tong University',
                 backHome: 'Back to Homepage',
-                note: 'Peer-reviewed conference and journal papers (__COUNT__ in total), in reverse chronological order. Also available on <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> and <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>.',
+                note: 'Peer-reviewed conference and journal papers, in reverse chronological order. Also available on <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> and <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>.',
                 toggleLabel: '中文',
                 docTitle: 'Publications | Jianfu Zhang'
             }
@@ -245,7 +245,6 @@ def main():
     pubs += load_extra(pubs)
     pubs.sort(key=lambda p: (-p["year"], p["venue"], p["title"]))
     html = PAGE_TEMPLATE.replace("__ENTRIES__", render_entries(pubs))
-    html = html.replace("__COUNT__", str(len(pubs)))
     out = os.path.join(REPO, "publications.html")
     with open(out, "w", encoding="utf-8") as f:
         f.write(html)
