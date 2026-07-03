@@ -251,11 +251,22 @@ main p {
 }
 
 .pub-list li {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .pub-title {
+    display: block;
     font-weight: 600;
+}
+
+.pub-authors {
+    display: block;
+    font-size: 15px;
+}
+
+.pub-meta {
+    display: block;
+    font-size: 15px;
 }
 
 .pub-venue {

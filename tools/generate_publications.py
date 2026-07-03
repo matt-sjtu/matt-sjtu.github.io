@@ -129,9 +129,9 @@ def render_entries(pubs):
             for label, u in p["links"]
         )
         out.append("                    <li>")
-        out.append(f'                        <span class="pub-authors">{", ".join(names)}.</span>')
-        out.append(f'                        <span class="pub-title">{esc(p["title"])}.</span>')
-        out.append(f'                        <span class="pub-venue">{esc(p["venue"])} {p["year"]}.</span> {links}')
+        out.append(f'                        <span class="pub-title">{esc(p["title"])}</span>')
+        out.append(f'                        <span class="pub-authors">{", ".join(names)}</span>')
+        out.append(f'                        <span class="pub-meta"><span class="pub-venue">{esc(p["venue"])} {p["year"]}</span>{" " + links if links else ""}</span>')
         out.append("                    </li>")
     out.append("                </ul>")
     return "\n".join(out)
