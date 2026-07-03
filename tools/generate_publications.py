@@ -138,12 +138,12 @@ def render_entries(pubs):
 
 
 PAGE_TEMPLATE = """<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>发表论文 | 张健夫</title>
-    <meta name="description" content="张健夫（上海交通大学计算机学院副教授）的发表论文列表：AAAI、CVPR、ICCV、NeurIPS、ICLR、ACM Multimedia 等会议与期刊论文。">
+    <title>Publications | Jianfu Zhang</title>
+    <meta name="description" content="Publications of Jianfu Zhang (Associate Professor, School of Computer Science, Shanghai Jiao Tong University): peer-reviewed papers at AAAI, CVPR, ICCV, NeurIPS, ICLR, ACM Multimedia and more.">
     <link rel="canonical" href="https://matt-sjtu.github.io/publications.html">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -159,17 +159,17 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     <div class="page">
         <header>
             <div class="identity">
-                <h1 data-i18n="title">发表论文</h1>
-                <p class="subtitle" data-i18n="subtitle">张健夫 · 上海交通大学 计算机学院</p>
+                <h1 data-i18n="title">Publications</h1>
+                <p class="subtitle" data-i18n="subtitle">Jianfu Zhang · School of Computer Science, Shanghai Jiao Tong University</p>
                 <p class="quick-links">
-                    <a href="index.html" data-i18n="backHome">返回主页</a>
+                    <a href="index.html" data-i18n="backHome">Back to Homepage</a>
                 </p>
             </div>
-            <button id="language-toggle" aria-label="Switch language">EN</button>
+            <button id="language-toggle" aria-label="Switch language">中文</button>
         </header>
         <main>
             <section id="publications">
-                <p class="pub-note" data-i18n-html="note">以下为经同行评审的会议与期刊论文，按年份倒序。完整列表亦可见 <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> 与 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>。</p>
+                <p class="pub-note" data-i18n-html="note">Peer-reviewed conference and journal papers, in reverse chronological order. Also available on <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener">DBLP</a> and <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>.</p>
 __ENTRIES__
             </section>
         </main>
@@ -215,7 +215,7 @@ __ENTRIES__
             applyLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh-CN');
         });
 
-        let initialLang = 'zh-CN';
+        let initialLang = 'en';
         try {
             const saved = localStorage.getItem('lang');
             if (saved && i18n[saved]) initialLang = saved;

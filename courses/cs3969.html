@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS3969 视觉内容生成 | 张健夫</title>
-    <meta name="description" content="上海交通大学 CS3969 视觉内容生成课程讲义（张健夫），共 14 讲：Image Prior、VAE、GAN、StyleGAN、Diffusion Models、Score Matching、Flow Matching、视频生成与 3D 等。">
+    <title>CS3969 Visual Content Generation | Jianfu Zhang</title>
+    <meta name="description" content="Lecture notes for CS3969 Visual Content Generation at Shanghai Jiao Tong University (Jianfu Zhang), 14 lectures: image priors, VAE, GAN, StyleGAN, diffusion models, score matching, flow matching, video generation and 3D.">
     <link rel="canonical" href="https://matt-sjtu.github.io/courses/cs3969.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -20,17 +20,17 @@
     <div class="page">
         <header>
             <div class="identity">
-                <h1 data-i18n="title">CS3969 视觉内容生成</h1>
-                <p class="subtitle" data-i18n="subtitle">授课教师：张健夫 · 上海交通大学 计算机学院</p>
+                <h1 data-i18n="title">CS3969 Visual Content Generation</h1>
+                <p class="subtitle" data-i18n="subtitle">Instructor: Jianfu Zhang · School of Computer Science, Shanghai Jiao Tong University</p>
                 <p class="quick-links">
-                    <a href="../index.html" data-i18n="backHome">返回主页</a>
+                    <a href="../index.html" data-i18n="backHome">Back to Homepage</a>
                 </p>
             </div>
-            <button id="language-toggle" aria-label="Switch language">EN</button>
+            <button id="language-toggle" aria-label="Switch language">中文</button>
         </header>
         <main>
             <section>
-                <h2 data-i18n="lecturesTitle">讲义</h2>
+                <h2 data-i18n="lecturesTitle">Lecture Notes</h2>
                 <ol class="lecture-list lecture-list-flat">
                     <li><a href="cs3969/01-introduction.pdf" target="_blank" rel="noopener" data-i18n="l01">Introduction</a></li>
                     <li><a href="cs3969/02-image-prior.pdf" target="_blank" rel="noopener" data-i18n="l02">Image Prior</a></li>
@@ -96,7 +96,7 @@
             applyLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh-CN');
         });
 
-        let initialLang = 'zh-CN';
+        let initialLang = 'en';
         try {
             const saved = localStorage.getItem('lang');
             if (saved && i18n[saved]) initialLang = saved;

@@ -21,6 +21,15 @@ body {
     font-size: 16px;
 }
 
+/* Chinese mode renders in 华文仿宋 (STFangsong), following <html lang> */
+html[lang="zh-CN"] body {
+    font-family: "STFangsong", "华文仿宋", "FangSong", "仿宋", "STSong", "SimSun", serif;
+}
+
+button {
+    font-family: inherit;
+}
+
 .page {
     max-width: 760px;
     margin: 0 auto;

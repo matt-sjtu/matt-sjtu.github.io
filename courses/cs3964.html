@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS3964 图像处理与视觉 | 张健夫</title>
-    <meta name="description" content="上海交通大学 CS3964 图像处理与视觉课程讲义（张健夫），共 21 讲：视觉系统、卷积、CNN、分割与检测、Transformer、自监督学习、VAE、GAN、扩散模型等。">
+    <title>CS3964 Image Processing and Vision | Jianfu Zhang</title>
+    <meta name="description" content="Lecture notes for CS3964 Image Processing and Vision at Shanghai Jiao Tong University (Jianfu Zhang), 21 lectures: visual systems, convolution, CNNs, segmentation and detection, Transformer, self-supervised learning, VAE, GAN, diffusion models and more.">
     <link rel="canonical" href="https://matt-sjtu.github.io/courses/cs3964.html">
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -20,39 +20,39 @@
     <div class="page">
         <header>
             <div class="identity">
-                <h1 data-i18n="title">CS3964 图像处理与视觉</h1>
-                <p class="subtitle" data-i18n="subtitle">授课教师：张健夫 · 上海交通大学 计算机学院</p>
+                <h1 data-i18n="title">CS3964 Image Processing and Vision</h1>
+                <p class="subtitle" data-i18n="subtitle">Instructor: Jianfu Zhang · School of Computer Science, Shanghai Jiao Tong University</p>
                 <p class="quick-links">
-                    <a href="../index.html" data-i18n="backHome">返回主页</a>
+                    <a href="../index.html" data-i18n="backHome">Back to Homepage</a>
                 </p>
             </div>
-            <button id="language-toggle" aria-label="Switch language">EN</button>
+            <button id="language-toggle" aria-label="Switch language">中文</button>
         </header>
         <main>
             <section>
-                <h2 data-i18n="lecturesTitle">讲义</h2>
+                <h2 data-i18n="lecturesTitle">Lecture Notes</h2>
                 <ol class="lecture-list lecture-list-flat">
-                    <li><a href="cs3964/01-introduction.pdf" target="_blank" rel="noopener" data-i18n="l01">导论</a></li>
-                    <li><a href="cs3964/02-visual-system-and-errors.pdf" target="_blank" rel="noopener" data-i18n="l02">视觉系统与视觉误差</a></li>
-                    <li><a href="cs3964/03-perception-systems.pdf" target="_blank" rel="noopener" data-i18n="l03">感知系统</a></li>
-                    <li><a href="cs3964/04-convolution.pdf" target="_blank" rel="noopener" data-i18n="l04">卷积</a></li>
-                    <li><a href="cs3964/05-feature-detection.pdf" target="_blank" rel="noopener" data-i18n="l05">特征点检测</a></li>
-                    <li><a href="cs3964/06-linear-models.pdf" target="_blank" rel="noopener" data-i18n="l06">线性模型</a></li>
-                    <li><a href="cs3964/07-cnn.pdf" target="_blank" rel="noopener" data-i18n="l07">卷积神经网络</a></li>
-                    <li><a href="cs3964/08-cnn-2.pdf" target="_blank" rel="noopener" data-i18n="l08">卷积神经网络 2</a></li>
-                    <li><a href="cs3964/09-semantic-segmentation.pdf" target="_blank" rel="noopener" data-i18n="l09">语义分割</a></li>
-                    <li><a href="cs3964/10-object-detection.pdf" target="_blank" rel="noopener" data-i18n="l10">物体检测</a></li>
-                    <li><a href="cs3964/11-sequence-models.pdf" target="_blank" rel="noopener" data-i18n="l11">序列模型</a></li>
+                    <li><a href="cs3964/01-introduction.pdf" target="_blank" rel="noopener" data-i18n="l01">Introduction</a></li>
+                    <li><a href="cs3964/02-visual-system-and-errors.pdf" target="_blank" rel="noopener" data-i18n="l02">Visual System and Visual Errors</a></li>
+                    <li><a href="cs3964/03-perception-systems.pdf" target="_blank" rel="noopener" data-i18n="l03">Perception Systems</a></li>
+                    <li><a href="cs3964/04-convolution.pdf" target="_blank" rel="noopener" data-i18n="l04">Convolution</a></li>
+                    <li><a href="cs3964/05-feature-detection.pdf" target="_blank" rel="noopener" data-i18n="l05">Feature Point Detection</a></li>
+                    <li><a href="cs3964/06-linear-models.pdf" target="_blank" rel="noopener" data-i18n="l06">Linear Models</a></li>
+                    <li><a href="cs3964/07-cnn.pdf" target="_blank" rel="noopener" data-i18n="l07">Convolutional Neural Networks</a></li>
+                    <li><a href="cs3964/08-cnn-2.pdf" target="_blank" rel="noopener" data-i18n="l08">Convolutional Neural Networks 2</a></li>
+                    <li><a href="cs3964/09-semantic-segmentation.pdf" target="_blank" rel="noopener" data-i18n="l09">Semantic Segmentation</a></li>
+                    <li><a href="cs3964/10-object-detection.pdf" target="_blank" rel="noopener" data-i18n="l10">Object Detection</a></li>
+                    <li><a href="cs3964/11-sequence-models.pdf" target="_blank" rel="noopener" data-i18n="l11">Sequence Models</a></li>
                     <li><a href="cs3964/12-transformer.pdf" target="_blank" rel="noopener" data-i18n="l12">Transformer</a></li>
-                    <li><a href="cs3964/13-self-supervised-learning.pdf" target="_blank" rel="noopener" data-i18n="l13">自监督学习</a></li>
-                    <li><a href="cs3964/14-generative-models-overview.pdf" target="_blank" rel="noopener" data-i18n="l14">生成模型综述</a></li>
+                    <li><a href="cs3964/13-self-supervised-learning.pdf" target="_blank" rel="noopener" data-i18n="l13">Self-Supervised Learning</a></li>
+                    <li><a href="cs3964/14-generative-models-overview.pdf" target="_blank" rel="noopener" data-i18n="l14">Overview of Generative Models</a></li>
                     <li><a href="cs3964/15-vae.pdf" target="_blank" rel="noopener" data-i18n="l15">VAE</a></li>
-                    <li><a href="cs3964/16-auto-regressive.pdf" target="_blank" rel="noopener" data-i18n="l16">自回归模型</a></li>
+                    <li><a href="cs3964/16-auto-regressive.pdf" target="_blank" rel="noopener" data-i18n="l16">Auto-Regressive Models</a></li>
                     <li><a href="cs3964/17-gan.pdf" target="_blank" rel="noopener" data-i18n="l17">GAN</a></li>
                     <li><a href="cs3964/18-stylegan.pdf" target="_blank" rel="noopener" data-i18n="l18">StyleGAN</a></li>
-                    <li><a href="cs3964/19-diffusion-models.pdf" target="_blank" rel="noopener" data-i18n="l19">扩散模型</a></li>
-                    <li><a href="cs3964/20-conditional-and-video-generation.pdf" target="_blank" rel="noopener" data-i18n="l20">条件生成与视频生成</a></li>
-                    <li><a href="cs3964/21-3d-and-aigc-detection.pdf" target="_blank" rel="noopener" data-i18n="l21">3D 与 AIGC 检测</a></li>
+                    <li><a href="cs3964/19-diffusion-models.pdf" target="_blank" rel="noopener" data-i18n="l19">Diffusion Models</a></li>
+                    <li><a href="cs3964/20-conditional-and-video-generation.pdf" target="_blank" rel="noopener" data-i18n="l20">Conditional and Video Generation</a></li>
+                    <li><a href="cs3964/21-3d-and-aigc-detection.pdf" target="_blank" rel="noopener" data-i18n="l21">3D and AIGC Detection</a></li>
                 </ol>
             </section>
         </main>
@@ -107,7 +107,7 @@
             applyLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh-CN');
         });
 
-        let initialLang = 'zh-CN';
+        let initialLang = 'en';
         try {
             const saved = localStorage.getItem('lang');
             if (saved && i18n[saved]) initialLang = saved;
