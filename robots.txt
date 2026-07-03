@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://matt-sjtu.github.io/sitemap.xml

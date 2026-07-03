@@ -1,0 +1,4 @@
+{
+  "_readme": "Papers accepted but not yet indexed by DBLP. Each entry: authors (full list, exact 'Jianfu Zhang' for bolding), title, venue (e.g. 'ICLR'), year, optional links [[label, url], ...]. Entries are dropped automatically once DBLP lists the same title — the generator prints a reminder to delete them here.",
+  "publications": []
+}

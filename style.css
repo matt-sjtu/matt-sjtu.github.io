@@ -83,11 +83,61 @@ header {
 .identity .quick-links a {
     opacity: 0.9;
     transition: opacity 0.15s, transform 0.15s;
+    position: relative;
 }
 
 .identity .quick-links a:hover {
     opacity: 1;
     transform: translateY(-1px);
+}
+
+/* tooltip bubble below each icon, driven by data-tip */
+.identity .quick-links a[data-tip]::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background: #1f2328;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s, transform 0.15s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.identity .quick-links a[data-tip]::before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: #1f2328;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.identity .quick-links a[data-tip]:hover::after,
+.identity .quick-links a[data-tip]:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.identity .quick-links a[data-tip]:hover::before,
+.identity .quick-links a[data-tip]:focus-visible::before {
+    opacity: 1;
+    visibility: visible;
 }
 
 #language-toggle {
@@ -172,6 +222,36 @@ main p {
 
 .lecture-list-flat li {
     margin-bottom: 8px;
+}
+
+/* ---- publications ---- */
+
+.pub-note {
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.pub-year {
+    margin-top: 28px;
+}
+
+.pub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pub-list li {
+    margin-bottom: 14px;
+}
+
+.pub-title {
+    font-weight: 600;
+}
+
+.pub-venue {
+    font-style: italic;
+    color: var(--muted);
 }
 
 /* ---- footer ---- */

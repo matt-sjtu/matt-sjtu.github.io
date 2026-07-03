@@ -40,22 +40,24 @@
         ]
     }
     </script>
+    <link rel="canonical" href="https://matt-sjtu.github.io/">
     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="page">
         <header>
-            <img src="matt.jpg" alt="张健夫的照片" id="about-photo">
+            <img src="matt.jpg" alt="张健夫的照片" id="about-photo" width="400" height="400">
             <div class="identity">
                 <h1 data-i18n="name">张健夫</h1>
                 <p class="subtitle" data-i18n="subtitle">上海交通大学 计算机学院 副教授 · 清源研究院 · 机器智能研究所</p>
                 <p class="quick-links">
-                    <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener" title="Google Scholar"><img src="icons/google-scholar.svg" alt="Google Scholar"></a>
-                    <a href="https://orcid.org/0000-0002-2673-5860" target="_blank" rel="noopener" title="ORCID"><img src="icons/orcid.svg" alt="ORCID"></a>
-                    <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener" title="DBLP"><img src="icons/dblp.svg" alt="DBLP"></a>
-                    <a href="https://matt-lab.org" target="_blank" rel="noopener" title="实验室主页 / Lab"><img src="icons/matt-lab.svg" alt="Lab"></a>
-                    <a href="#contact" title="邮箱 / Email"><img src="icons/email.svg" alt="Email"></a>
+                    <a href="https://matt-lab.org" target="_blank" rel="noopener" data-tip="实验室主页" data-i18n-tip="tipLab"><img src="icons/matt-lab.svg" alt="Lab"></a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener" data-tip="Google Scholar 学术主页" data-i18n-tip="tipScholar"><img src="icons/google-scholar.svg" alt="Google Scholar"></a>
+                    <a href="https://orcid.org/0000-0002-2673-5860" target="_blank" rel="noopener" data-tip="ORCID 学术档案" data-i18n-tip="tipOrcid"><img src="icons/orcid.svg" alt="ORCID"></a>
+                    <a href="https://dblp.org/pid/78/3993-3.html" target="_blank" rel="noopener" data-tip="DBLP 论文列表" data-i18n-tip="tipDblp"><img src="icons/dblp.svg" alt="DBLP"></a>
+                    <a href="#contact" data-tip="联系邮箱" data-i18n-tip="tipEmail"><img src="icons/email.svg" alt="Email"></a>
                 </p>
             </div>
             <button id="language-toggle" aria-label="Switch language">EN</button>
@@ -67,7 +69,7 @@
             </section>
             <section id="research">
                 <h2 data-i18n="researchTitle">研究方向</h2>
-                <p data-i18n-html="researchContent">我的研究兴趣包括：人工智能、计算机视觉、生成模型、可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a> 和 <a href="https://matt-lab.org" target="_blank" rel="noopener">实验室主页</a>。</p>
+                <p data-i18n-html="researchContent">我的研究兴趣包括：人工智能、计算机视觉、生成模型、可信模型。详细研究成果可参考<a href="publications.html">发表论文</a>与 <a href="https://matt-lab.org" target="_blank" rel="noopener">实验室主页</a>。</p>
                 <img src="topic.png" alt="研究方向词云" id="research-wordcloud" width="1800" height="900" loading="lazy">
             </section>
             <section id="courses">
@@ -81,7 +83,7 @@
             </section>
             <section id="contact">
                 <h2 data-i18n="contactTitle">联系我</h2>
-                <p data-i18n="contactContent">邮箱：c [dot] sis [at] sjtu [dot] edu [dot] cn</p>
+                <p><span data-i18n="contactLabel">邮箱：</span><a id="email-link" href="#contact">c [dot] sis [at] sjtu [dot] edu [dot] cn</a></p>
             </section>
         </main>
         <footer>
@@ -93,37 +95,49 @@
             'zh-CN': {
                 name: '张健夫',
                 subtitle: '上海交通大学 计算机学院 副教授 · 清源研究院 · 机器智能研究所',
+                tipLab: '实验室主页',
+                tipScholar: 'Google Scholar 学术主页',
+                tipOrcid: 'ORCID 学术档案',
+                tipDblp: 'DBLP 论文列表',
+                tipEmail: '联系邮箱',
                 aboutTitle: '关于我',
                 aboutContent: '我现任上海交通大学计算机学院副教授，任职于清源研究院与机器智能研究所。我本科毕业于上海交通大学ACM班，并于上海交通大学计算机科学与工程系获得博士学位，师从<a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank" rel="noopener">张丽清教授</a>、<a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank" rel="noopener">俞勇教授</a>及<a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">赵启斌博士</a>。',
                 researchTitle: '研究方向',
-                researchContent: '我的研究兴趣包括：人工智能、计算机视觉、生成模型、可信模型。详细研究成果与近期工作可参考 <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a> 和 <a href="https://matt-lab.org" target="_blank" rel="noopener">实验室主页</a>。',
+                researchContent: '我的研究兴趣包括：人工智能、计算机视觉、生成模型、可信模型。详细研究成果可参考<a href="publications.html">发表论文</a>与 <a href="https://matt-lab.org" target="_blank" rel="noopener">实验室主页</a>。',
                 coursesTitle: '课程',
                 course1: 'CS3964 图像处理与视觉',
                 course2: 'CS7353 设计和理解深度神经网络',
                 course3: 'CS3969 视觉内容生成',
                 course4: 'CS3339 机器学习（强化）',
                 contactTitle: '联系我',
-                contactContent: '邮箱：c [dot] sis [at] sjtu [dot] edu [dot] cn',
+                contactLabel: '邮箱：',
                 toggleLabel: 'EN',
                 photoAlt: '张健夫的照片',
+                wordcloudAlt: '研究方向词云',
                 docTitle: '张健夫 | 上海交通大学计算机学院'
             },
             'en': {
                 name: 'Jianfu Zhang',
                 subtitle: 'Associate Professor, School of Computer Science, Shanghai Jiao Tong University · Qingyuan Research Institute · Institute of Machine Intelligence',
+                tipLab: 'Lab homepage',
+                tipScholar: 'Google Scholar profile',
+                tipOrcid: 'ORCID record',
+                tipDblp: 'DBLP publication list',
+                tipEmail: 'Contact email',
                 aboutTitle: 'About Me',
                 aboutContent: 'I am an Associate Professor at the School of Computer Science, Shanghai Jiao Tong University, affiliated with the Qingyuan Research Institute and the Institute of Machine Intelligence. I received my bachelor\'s degree from the ACM Honors Class at Shanghai Jiao Tong University, and completed my Ph.D. in the Department of Computer Science and Engineering at the same university, where I was fortunate to be advised by <a href="https://bcmi.sjtu.edu.cn/~zhangliqing/" target="_blank" rel="noopener">Prof. Liqing Zhang</a>, <a href="https://apex.sjtu.edu.cn/members/yyu" target="_blank" rel="noopener">Prof. Yong Yu</a>, and <a href="https://qibinzhao.github.io/" target="_blank" rel="noopener">Dr. Qibin Zhao</a>.',
                 researchTitle: 'Research',
-                researchContent: 'My research interests include: Artificial Intelligence, Computer Vision, Generative Models, and Trustworthy Models. For more details, please refer to <a href="https://scholar.google.com/citations?hl=en&user=jSiStc4AAAAJ" target="_blank" rel="noopener">Google Scholar</a> and the <a href="https://matt-lab.org" target="_blank" rel="noopener">lab homepage</a>.',
+                researchContent: 'My research interests include: Artificial Intelligence, Computer Vision, Generative Models, and Trustworthy Models. For more details, please refer to my <a href="publications.html">publications</a> and the <a href="https://matt-lab.org" target="_blank" rel="noopener">lab homepage</a>.',
                 coursesTitle: 'Courses',
                 course1: 'CS3964 Image Processing and Vision',
                 course2: 'CS7353 Designing and Understanding Deep Neural Networks',
                 course3: 'CS3969 Visual Content Generation',
                 course4: 'CS3339 Machine Learning (Enhanced)',
                 contactTitle: 'Contact',
-                contactContent: 'Email: c [dot] sis [at] sjtu [dot] edu [dot] cn',
+                contactLabel: 'Email: ',
                 toggleLabel: '中文',
                 photoAlt: 'Photo of Jianfu Zhang',
+                wordcloudAlt: 'Word cloud of research topics',
                 docTitle: 'Jianfu Zhang | School of Computer Science, SJTU'
             }
         };
@@ -137,7 +151,11 @@
             document.querySelectorAll('[data-i18n-html]').forEach(el => {
                 el.innerHTML = dict[el.dataset.i18nHtml];
             });
+            document.querySelectorAll('[data-i18n-tip]').forEach(el => {
+                el.dataset.tip = dict[el.dataset.i18nTip];
+            });
             document.getElementById('about-photo').alt = dict.photoAlt;
+            document.getElementById('research-wordcloud').alt = dict.wordcloudAlt;
             document.title = dict.docTitle;
             document.getElementById('language-toggle').textContent = dict.toggleLabel;
             try { localStorage.setItem('lang', lang); } catch (e) {}
@@ -153,6 +171,14 @@
             if (saved && i18n[saved]) initialLang = saved;
         } catch (e) {}
         applyLanguage(initialLang);
+
+        (function () {
+            // assemble mailto at runtime so the address never appears in page source
+            var el = document.getElementById('email-link');
+            var addr = ['c', 'sis'].join('.') + '@' + ['sjtu', 'edu', 'cn'].join('.');
+            el.href = 'mailto:' + addr;
+            el.textContent = addr;
+        })();
     </script>
 </body>
 </html>
