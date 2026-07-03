@@ -210,6 +210,34 @@
           "https://arxiv.org/abs/2602.23697"
         ]
       ]
+    },
+    {
+      "authors": [
+        "Haoxing Chen",
+        "Yan Hong",
+        "Zizheng Huang",
+        "Zhuoer Xu",
+        "Zhangxuan Gu",
+        "Yaohui Li",
+        "Jun Lan",
+        "Huijia Zhu",
+        "Jianfu Zhang",
+        "Weiqiang Wang",
+        "Huaxiong Li"
+      ],
+      "title": "DeMamba: AI-Generated Video Detection on Million-Scale GenVideo Benchmark",
+      "venue": "Science China Information Sciences",
+      "year": 2026,
+      "links": [
+        [
+          "DOI",
+          "https://doi.org/10.1007/s11432-024-4894-0"
+        ],
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2405.19707"
+        ]
+      ]
     }
   ]
 }
