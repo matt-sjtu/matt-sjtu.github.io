@@ -2,17 +2,25 @@
 """Generate publications.html from a DBLP person XML export.
 
 Usage:
-    python3 tools/generate_publications.py [--xml PATH]
+    python3 tools/generate_publications.py [--xml PATH] [--skip-s2]
 
 By default fetches https://dblp.org/pid/78/3993-3.xml (Jianfu Zhang 0003).
 Pass --xml to use a local copy instead. Only formal publications are kept
-(informal/CoRR preprints are skipped). Output: publications.html in repo root.
+from DBLP (informal/CoRR preprints are skipped as entries), but each unique
+preprint is checked against Semantic Scholar BY ARXIV ID (identity-safe:
+no author disambiguation involved) — if S2 reports a formal publication
+venue, the paper is added with that venue until DBLP catches up, at which
+point the DBLP record takes over automatically. tools/extra_publications.json
+supplies manual entries and takes precedence over S2 additions.
+Output: publications.html in repo root.
 """
 import argparse
 import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -31,6 +39,23 @@ VENUE_MAP = {
     "J. Comput. Sci. Technol.": "Journal of Computer Science and Technology",
 }
 
+# Semantic Scholar's long venue names -> the site's display convention
+S2_VENUE_MAP = {
+    "IEEE International Conference on Acoustics, Speech, and Signal Processing": "ICASSP",
+    "IEEE/CVF Conference on Computer Vision and Pattern Recognition": "CVPR",
+    "Computer Vision and Pattern Recognition": "CVPR",
+    "IEEE/CVF International Conference on Computer Vision": "ICCV",
+    "IEEE International Conference on Computer Vision": "ICCV",
+    "European Conference on Computer Vision": "ECCV",
+    "International Conference on Learning Representations": "ICLR",
+    "Neural Information Processing Systems": "NeurIPS",
+    "International Conference on Machine Learning": "ICML",
+    "AAAI Conference on Artificial Intelligence": "AAAI",
+    "ACM International Conference on Multimedia": "ACM Multimedia",
+    "ACM Multimedia": "ACM Multimedia",
+    "IEEE International Conference on Multimedia and Expo": "ICME",
+}
+
 
 def clean_author(name):
     """Strip DBLP homonym suffix: 'Liqing Zhang 0001' -> 'Liqing Zhang'."""
@@ -44,12 +69,11 @@ def clean_venue(venue):
 
 
 def parse_pubs(xml_text):
+    """Return (formal_pubs, unique_preprints) from the DBLP person XML."""
     root = ET.fromstring(xml_text)
-    pubs = []
+    pubs, informal = [], []
     for r in root.findall("r"):
         e = r[0]
-        if e.get("publtype") == "informal":  # skip CoRR preprints
-            continue
         authors = []
         self_idx = -1
         for a in e.findall("author"):
@@ -58,6 +82,14 @@ def parse_pubs(xml_text):
             authors.append(clean_author(a.text or ""))
         title = (e.findtext("title") or "").rstrip(".")
         year = int(e.findtext("year") or 0)
+        if e.get("publtype") == "informal":
+            m = re.search(r"corr/abs-(\d{4})-(\d+)", e.get("key") or "")
+            if m:
+                informal.append({
+                    "authors": authors, "self_idx": self_idx, "title": title,
+                    "year": year, "arxiv": f"{m.group(1)}.{m.group(2)}",
+                })
+            continue
         venue = clean_venue(e.findtext("booktitle") or e.findtext("journal") or "")
         links = []
         for ee in e.findall("ee"):
@@ -75,7 +107,79 @@ def parse_pubs(xml_text):
             "authors": authors, "self_idx": self_idx, "title": title,
             "year": year, "venue": venue, "links": links,
         })
-    return pubs
+    formal_norms = {norm_title(p["title"]) for p in pubs}
+    preprints = [p for p in informal if not is_known(p["title"], formal_norms)]
+    return pubs, preprints
+
+
+def s2_batch_lookup(arxiv_ids):
+    """One batched POST for all preprints; list aligned with input (None = unknown)."""
+    url = ("https://api.semanticscholar.org/graph/v1/paper/batch"
+           "?fields=venue,year,publicationVenue,externalIds")
+    body = json.dumps({"ids": [f"ARXIV:{a}" for a in arxiv_ids]}).encode()
+    delay = 5
+    for _ in range(6):
+        try:
+            req = urllib.request.Request(
+                url, data=body,
+                headers={"User-Agent": "matt-sjtu.github.io publications updater",
+                         "Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError as ex:
+            if ex.code == 429 or ex.code >= 500:
+                time.sleep(delay)
+                delay = min(delay * 2, 60)
+                continue
+            raise
+        except Exception:
+            time.sleep(delay)
+            delay = min(delay * 2, 60)
+    raise RuntimeError("Semantic Scholar batch lookup kept failing")
+
+
+def norm_title(t):
+    """Normalize for dedupe: lowercase alnum only."""
+    return re.sub(r"[^a-z0-9]", "", t.lower())
+
+
+def is_known(title, known_norms):
+    """True if title matches a known one, incl. renamed formal versions
+    ('Deep Image Harmonization...' vs 'DoveNet: Deep Image Harmonization...')."""
+    n = norm_title(title)
+    return any(n == k or n in k or k in n for k in known_norms)
+
+
+def augment_from_s2(preprints, known_norms):
+    """Preprints that Semantic Scholar reports as formally published.
+
+    Identity-safe by construction: lookups are keyed by the arXiv id of the
+    author's own DBLP preprints, so no author disambiguation is involved.
+    """
+    candidates = [p for p in preprints if not is_known(p["title"], known_norms)]
+    if not candidates:
+        return []
+    results = s2_batch_lookup([p["arxiv"] for p in candidates])
+    added = []
+    for pre, d in zip(candidates, results):
+        if not d:
+            continue
+        venue_raw = (d.get("venue") or "").strip()
+        if not venue_raw or "arxiv" in venue_raw.lower():
+            continue
+        links = []
+        doi = (d.get("externalIds") or {}).get("DOI")
+        if doi and "arxiv" not in doi.lower():
+            links.append(("DOI", f"https://doi.org/{doi}"))
+        links.append(("arXiv", f"https://arxiv.org/abs/{pre['arxiv']}"))
+        entry = {
+            "authors": pre["authors"], "self_idx": pre["self_idx"],
+            "title": pre["title"], "year": int(d.get("year") or pre["year"]),
+            "venue": S2_VENUE_MAP.get(venue_raw, venue_raw), "links": links,
+        }
+        added.append(entry)
+        print(f"S2: + {entry['venue']} {entry['year']}: {pre['title'][:60]}")
+    return added
 
 
 def load_extra(dblp_pubs):
@@ -230,6 +334,8 @@ __ENTRIES__
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--xml", help="local DBLP XML file (default: fetch from dblp.org)")
+    ap.add_argument("--skip-s2", action="store_true",
+                    help="skip the Semantic Scholar published-preprint check")
     args = ap.parse_args()
 
     if args.xml:
@@ -239,10 +345,16 @@ def main():
         with urllib.request.urlopen(DBLP_URL, timeout=30) as resp:
             xml_text = resp.read().decode("utf-8")
 
-    pubs = parse_pubs(xml_text)
+    pubs, preprints = parse_pubs(xml_text)
     if not pubs:
         sys.exit("no formal publications parsed — aborting")
     pubs += load_extra(pubs)
+    if not args.skip_s2:
+        known = {norm_title(p["title"]) for p in pubs}
+        try:
+            pubs += augment_from_s2(preprints, known)
+        except Exception as ex:  # S2 outage must not break the build
+            print(f"warning: Semantic Scholar augmentation failed: {ex}")
     pubs.sort(key=lambda p: (-p["year"], p["venue"], p["title"]))
     html = PAGE_TEMPLATE.replace("__ENTRIES__", render_entries(pubs))
     out = os.path.join(REPO, "publications.html")
