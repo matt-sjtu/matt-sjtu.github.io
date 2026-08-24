@@ -228,6 +228,68 @@
       "aliases": [
         "Interpretable and Reliable Detection of AI-Generated Images via Grounded Reasoning in MLLMs"
       ]
+    },
+    {
+      "authors": [
+        "Bowen Deng",
+        "Jiahui Zhan",
+        "Yikun Ji",
+        "Haozhen Yan",
+        "Jianfu Zhang"
+      ],
+      "title": "Defake-o3: From Speculative Rationales to Verifiable Evidence for Explainable AIGI Detection",
+      "venue": "ACM Multimedia",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2608.16259"
+        ]
+      ]
+    },
+    {
+      "authors": [
+        "Haozhen Yan",
+        "Ruoxin Chen",
+        "Jiahui Zhan",
+        "Bo Wang",
+        "Youchang Xiao",
+        "Shouhong Ding",
+        "Liqing Zhang",
+        "Taiping Yao",
+        "Jianfu Zhang"
+      ],
+      "title": "LoRC: Detecting AI-Generated Images via Low-Rank Collapse in Semantic Residuals",
+      "venue": "ECCV",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2608.20882"
+        ]
+      ]
+    },
+    {
+      "authors": [
+        "Yan Hong",
+        "Wei Li",
+        "Kedong Xiu",
+        "Jun Lan",
+        "Shuheng Zhou",
+        "Zhongcai Lyu",
+        "Huijia Zhu",
+        "Weiqiang Wang",
+        "Jianfu Zhang"
+      ],
+      "title": "RoCo-ACE: Rollout-Conditioned Online Distillation for Retention-Aware Knowledge Injection",
+      "venue": "EMNLP",
+      "year": 2026,
+      "links": [
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2607.24771"
+        ]
+      ]
     }
   ]
 }
