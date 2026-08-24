@@ -58,9 +58,25 @@ S2_VENUE_MAP = {
 }
 
 
+# IEEE conference DOIs embed the proceedings acronym and year:
+# 10.1109/ICIP61757.2026.11629184 -> ICIP, 2026. Semantic Scholar files some of
+# these under a venue id that collides on the acronym (ICIP papers land on
+# "International Conference on Information Photonics", with the wrong year), so
+# where the DOI names a conference we recognize it wins over the S2 venue string.
+DOI_CONF_ACRONYMS = {"icassp", "icip", "icme", "cvpr", "iccv", "wacv", "ijcnn"}
+
+
 def clean_author(name):
     """Strip DBLP homonym suffix: 'Liqing Zhang 0001' -> 'Liqing Zhang'."""
     return re.sub(r"\s+\d{4}$", "", name)
+
+
+def venue_from_doi(doi):
+    """(venue, year) from an IEEE conference DOI, else (None, None)."""
+    m = re.match(r"10\.1109/([a-z]+)\d*\.(\d{4})\.", (doi or "").lower())
+    if m and m.group(1) in DOI_CONF_ACRONYMS:
+        return m.group(1).upper(), int(m.group(2))
+    return None, None
 
 
 def clean_venue(venue):
@@ -173,10 +189,17 @@ def augment_from_s2(preprints, known_norms):
         if doi and "arxiv" not in doi.lower():
             links.append(("DOI", f"https://doi.org/{doi}"))
         links.append(("arXiv", f"https://arxiv.org/abs/{pre['arxiv']}"))
+        venue = S2_VENUE_MAP.get(venue_raw, venue_raw)
+        year = int(d.get("year") or pre["year"])
+        doi_venue, doi_year = venue_from_doi(doi)
+        if doi_venue and doi_venue != venue:
+            print(f"note: DOI says {doi_venue} {doi_year}, S2 said "
+                  f"'{venue}' {year}; trusting the DOI")
+            venue, year = doi_venue, doi_year
         entry = {
             "authors": pre["authors"], "self_idx": pre["self_idx"],
-            "title": pre["title"], "year": int(d.get("year") or pre["year"]),
-            "venue": S2_VENUE_MAP.get(venue_raw, venue_raw), "links": links,
+            "title": pre["title"], "year": year,
+            "venue": venue, "links": links,
         }
         added.append(entry)
         print(f"S2: + {entry['venue']} {entry['year']}: {pre['title'][:60]}")

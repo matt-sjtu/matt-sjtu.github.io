@@ -290,6 +290,33 @@
           "https://arxiv.org/abs/2607.24771"
         ]
       ]
+    },
+    {
+      "authors": [
+        "Shengyi Wu",
+        "Lingxiao Lu",
+        "Xianbing Sun",
+        "Zheng Wang",
+        "Jianlou Si",
+        "Liqing Zhang",
+        "Jianfu Zhang"
+      ],
+      "title": "SelfVTON: Enhancing Virtual Try-On with Self-Supervised Cloth Detailing and Body Alignment",
+      "venue": "ICIP",
+      "year": 2026,
+      "links": [
+        [
+          "DOI",
+          "https://doi.org/10.1109/ICIP61757.2026.11630345"
+        ],
+        [
+          "arXiv",
+          "https://arxiv.org/abs/2406.10539"
+        ]
+      ],
+      "aliases": [
+        "Self-Supervised Vision Transformer for Enhanced Virtual Clothes Try-On"
+      ]
     }
   ]
 }
