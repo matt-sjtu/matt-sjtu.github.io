@@ -4,8 +4,10 @@
 Usage:
     python3 tools/generate_publications.py [--xml PATH] [--skip-s2]
 
-By default fetches https://dblp.org/pid/78/3993-3.xml (Jianfu Zhang 0003).
-Pass --xml to use a local copy instead. Only formal publications are kept
+By default fetches https://dblp.org/pid/78/3993-3.xml (Jianfu Zhang 0003),
+falling back to the DBLP SPARQL endpoint when dblp.org's bot protection
+blocks the XML export. Pass --xml to use a local copy instead.
+Only formal publications are kept
 from DBLP (informal/CoRR preprints are skipped as entries), but each unique
 preprint is checked against Semantic Scholar BY ARXIV ID (identity-safe:
 no author disambiguation involved) — if S2 reports a formal publication
@@ -21,12 +23,37 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
 SELF_PID = "78/3993-3"
 SELF_NAME = "Jianfu Zhang"
 DBLP_URL = f"https://dblp.org/pid/{SELF_PID}.xml"
+USER_AGENT = "matt-sjtu.github.io publications updater"
+
+# dblp.org intermittently puts the XML export behind an Anubis bot challenge
+# (observed 5xx / challenge HTML since Sep 2026); the SPARQL endpoint stays
+# open to scripts, so it serves as the fallback data source.
+SPARQL_URL = "https://sparql.dblp.org/sparql"
+SPARQL_QUERY = f"""\
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dblp: <https://dblp.org/rdf/schema#>
+SELECT ?pub ?informal ?title ?year ?yevent ?venue ?ord ?name ?creator ?ee ?primary WHERE {{
+  ?pub dblp:authoredBy <https://dblp.org/pid/{SELF_PID}> .
+  ?pub dblp:title ?title .
+  ?pub dblp:yearOfPublication ?year .
+  OPTIONAL {{ ?pub dblp:yearOfEvent ?yevent }}
+  ?pub dblp:hasSignature ?sig .
+  ?sig dblp:signatureOrdinal ?ord .
+  ?sig dblp:signatureDblpName ?name .
+  ?sig dblp:signatureCreator ?creator .
+  OPTIONAL {{ ?pub rdf:type dblp:Informal . BIND(1 AS ?informal) }}
+  OPTIONAL {{ ?pub dblp:publishedIn ?venue }}
+  OPTIONAL {{ ?pub dblp:documentPage ?ee }}
+  OPTIONAL {{ ?pub dblp:primaryDocumentPage ?primary }}
+}}
+"""
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXTRA_JSON = os.path.join(REPO, "tools", "extra_publications.json")
 
@@ -85,6 +112,29 @@ def clean_venue(venue):
     return VENUE_MAP.get(venue, venue)
 
 
+def pick_links(urls):
+    """Preferred links from ee URLs (in order): one DOI, one arXiv, else first."""
+    links = []
+    for url in urls:
+        if "doi.org" in url:
+            # DOIs are case-insensitive; the SPARQL endpoint uppercases them,
+            # so normalize to keep the generated HTML stable across sources
+            url = url.lower()
+            if not any(l[0] == "DOI" for l in links):
+                links.append(("DOI", url))
+        elif "arxiv.org" in url and not any(l[0] == "arXiv" for l in links):
+            links.append(("arXiv", url))
+    if not links and urls:
+        links.append(("Link", urls[0]))
+    return links
+
+
+def dedupe_preprints(pubs, informal):
+    """Preprints whose title does not match any formal publication."""
+    formal_norms = {norm_title(p["title"]) for p in pubs}
+    return [p for p in informal if not is_known(p["title"], formal_norms)]
+
+
 def parse_pubs(xml_text):
     """Return (formal_pubs, unique_preprints) from the DBLP person XML."""
     root = ET.fromstring(xml_text)
@@ -108,25 +158,85 @@ def parse_pubs(xml_text):
                 })
             continue
         venue = clean_venue(e.findtext("booktitle") or e.findtext("journal") or "")
-        links = []
-        for ee in e.findall("ee"):
-            url = ee.text or ""
-            if "doi.org" in url and not any(l[0] == "DOI" for l in links):
-                links.append(("DOI", url))
-            elif "arxiv.org" in url and not any(l[0] == "arXiv" for l in links):
-                links.append(("arXiv", url))
-        if not links:
-            for ee in e.findall("ee"):
-                if ee.text:
-                    links.append(("Link", ee.text))
-                    break
+        links = pick_links([ee.text for ee in e.findall("ee") if ee.text])
         pubs.append({
             "authors": authors, "self_idx": self_idx, "title": title,
             "year": year, "venue": venue, "links": links,
         })
-    formal_norms = {norm_title(p["title"]) for p in pubs}
-    preprints = [p for p in informal if not is_known(p["title"], formal_norms)]
-    return pubs, preprints
+    return pubs, dedupe_preprints(pubs, informal)
+
+
+def sparql_pubs():
+    """Return (formal_pubs, unique_preprints) from the DBLP SPARQL endpoint."""
+    print(f"querying {SPARQL_URL} ...")
+    url = SPARQL_URL + "?" + urllib.parse.urlencode({"query": SPARQL_QUERY})
+    req = urllib.request.Request(
+        url, headers={"User-Agent": USER_AGENT,
+                      "Accept": "application/sparql-results+json"})
+    rows = json.loads(fetch_with_retry(req))["results"]["bindings"]
+    recs = {}
+    for b in rows:
+        val = {k: v["value"] for k, v in b.items()}
+        r = recs.setdefault(val["pub"], {
+            # yearOfEvent matches the XML <year> for conference papers;
+            # yearOfPublication is the (often later) proceedings year
+            "title": val["title"].rstrip("."),
+            "year": int(val.get("yevent") or val["year"]),
+            "venue": val.get("venue", ""), "informal": False,
+            "signatures": {}, "ees": set(), "primary": None,
+        })
+        r["informal"] |= "informal" in val
+        r["signatures"][int(val["ord"])] = (val["name"], val["creator"])
+        if "ee" in val:
+            r["ees"].add(val["ee"])
+        if "primary" in val:
+            r["primary"] = val["primary"]
+    self_uri = f"https://dblp.org/pid/{SELF_PID}"
+    pubs, informal = [], []
+    for rec_uri, r in recs.items():
+        sigs = [r["signatures"][i] for i in sorted(r["signatures"])]
+        authors = [clean_author(name) for name, _ in sigs]
+        self_idx = next(
+            (i for i, (_, creator) in enumerate(sigs) if creator == self_uri), -1)
+        if r["informal"]:
+            m = re.search(r"corr/abs-(\d{4})-(\d+)", rec_uri)
+            if m:
+                informal.append({
+                    "authors": authors, "self_idx": self_idx, "title": r["title"],
+                    "year": r["year"], "arxiv": f"{m.group(1)}.{m.group(2)}",
+                })
+            continue
+        urls = sorted(r["ees"], key=lambda u: u != r["primary"])
+        pubs.append({
+            "authors": authors, "self_idx": self_idx, "title": r["title"],
+            "year": r["year"], "venue": clean_venue(r["venue"]),
+            "links": pick_links(urls),
+        })
+    return pubs, dedupe_preprints(pubs, informal)
+
+
+def fetch_with_retry(req, attempts=6):
+    """Fetch a request, retrying 429/5xx and network errors with backoff."""
+    delay = 5
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                return resp.read()
+        except urllib.error.HTTPError as ex:
+            # urllib refuses to auto-follow 307/308 for POST; do it ourselves
+            if ex.code in (307, 308) and ex.headers.get("Location"):
+                req = urllib.request.Request(
+                    urllib.parse.urljoin(req.full_url, ex.headers["Location"]),
+                    data=req.data, headers=dict(req.header_items()))
+                continue
+            if ex.code != 429 and ex.code < 500:
+                raise
+        except Exception:
+            pass
+        if attempt < attempts - 1:
+            time.sleep(delay)
+            delay = min(delay * 2, 60)
+    raise RuntimeError(f"{req.full_url} kept failing after {attempts} attempts")
 
 
 def s2_batch_lookup(arxiv_ids):
@@ -134,25 +244,10 @@ def s2_batch_lookup(arxiv_ids):
     url = ("https://api.semanticscholar.org/graph/v1/paper/batch"
            "?fields=venue,year,publicationVenue,externalIds")
     body = json.dumps({"ids": [f"ARXIV:{a}" for a in arxiv_ids]}).encode()
-    delay = 5
-    for _ in range(6):
-        try:
-            req = urllib.request.Request(
-                url, data=body,
-                headers={"User-Agent": "matt-sjtu.github.io publications updater",
-                         "Content-Type": "application/json"})
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                return json.load(resp)
-        except urllib.error.HTTPError as ex:
-            if ex.code == 429 or ex.code >= 500:
-                time.sleep(delay)
-                delay = min(delay * 2, 60)
-                continue
-            raise
-        except Exception:
-            time.sleep(delay)
-            delay = min(delay * 2, 60)
-    raise RuntimeError("Semantic Scholar batch lookup kept failing")
+    req = urllib.request.Request(
+        url, data=body,
+        headers={"User-Agent": USER_AGENT, "Content-Type": "application/json"})
+    return json.loads(fetch_with_retry(req))
 
 
 def norm_title(t):
@@ -368,13 +463,16 @@ def main():
     args = ap.parse_args()
 
     if args.xml:
-        xml_text = open(args.xml, encoding="utf-8").read()
+        pubs, preprints = parse_pubs(open(args.xml, encoding="utf-8").read())
     else:
         print(f"fetching {DBLP_URL} ...")
-        with urllib.request.urlopen(DBLP_URL, timeout=30) as resp:
-            xml_text = resp.read().decode("utf-8")
-
-    pubs, preprints = parse_pubs(xml_text)
+        req = urllib.request.Request(DBLP_URL, headers={"User-Agent": USER_AGENT})
+        try:
+            # Anubis serves its challenge as 200 + HTML, which fails XML parsing.
+            pubs, preprints = parse_pubs(fetch_with_retry(req, attempts=2).decode("utf-8"))
+        except (urllib.error.URLError, RuntimeError, ET.ParseError) as ex:
+            print(f"warning: DBLP XML export unavailable ({ex}); using SPARQL")
+            pubs, preprints = sparql_pubs()
     if not pubs:
         sys.exit("no formal publications parsed — aborting")
     extra, alias_norms = load_extra(pubs)
